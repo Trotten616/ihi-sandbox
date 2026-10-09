@@ -1,0 +1,31 @@
+{
+  "app": "cc",
+  "label": "Infinity Home Improvement Command Center",
+  "builtAt": "2026-10-08T04:55:04-04:00",
+  "source": "archive:main",
+  "commit": "922109c",
+  "storageKeys": [
+    "ig-command-office",
+    "ig-command-theme",
+    "ihi-act-v1:",
+    "ihi-command-office",
+    "ihi-command-theme",
+    "ihi-command-user",
+    "ihi-gate-v16",
+    "ihi-idle-minutes",
+    "ihi-phone-rep:",
+    "ihi-sample-v1:",
+    "ihi-txt-v3:",
+    "ihi-view-as-rep"
+  ],
+  "gateKeys": [
+    "ihi-gate-v16"
+  ],
+  "serviceWorker": true,
+  "swCacheRenamedIn": [
+    "sw.js",
+    "js/mobile-shell.js"
+  ],
+  "manifest": "manifest.webmanifest",
+  "warnings": []
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="IntelliGro.AI: your AI agents, links, notes and quick actions in one place on your phone.">
+<title>IntelliGro.AI</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-180.png">
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+<script src="boot.js"></script>
+<link rel="stylesheet" href="/ihi-sandbox/shared/sandbox.css">
+<script src="/ihi-sandbox/shared/sandbox.js" data-app="agents" data-keys="igxs.,ig.theme" data-caches="ig-shell"></script>
+</head>
+<body>
+<div class="shell">
+  <div id="sbxBanner" class="banner sbx" role="status" hidden><strong>SANDBOX:</strong> demo data. Nothing is sent anywhere.</div>
+  <div id="offlineBanner" class="banner offline" role="status" hidden>Offline. You're seeing the saved app; nothing new can load.</div>
+
+  <!-- Passcode gate: the only thing rendered until unlocked -->
+  <section id="gate" class="gate" aria-label="Passcode">
+    <div class="gate-inner">
+      <img src="icons/icon-192.png" width="72" height="72" alt="IntelliGro.AI logo" class="gate-logo">
+      <h1 class="gate-title">IntelliGro<span>.AI</span></h1>
+      <p class="gate-sub" id="gateMsg">Enter passcode</p>
+      <div class="pin-dots" id="pinDots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <input id="pinInput" class="pin-input" type="password" inputmode="numeric" autocomplete="off" maxlength="8" aria-label="Passcode">
+      <div class="pinpad" id="pinpad">
+        <button type="button" data-k="1">1</button><button type="button" data-k="2">2</button><button type="button" data-k="3">3</button>
+        <button type="button" data-k="4">4</button><button type="button" data-k="5">5</button><button type="button" data-k="6">6</button>
+        <button type="button" data-k="7">7</button><button type="button" data-k="8">8</button><button type="button" data-k="9">9</button>
+        <span></span><button type="button" data-k="0">0</button><button type="button" data-k="del" aria-label="Delete">&#9003;</button>
+      </div>
+      <p class="gate-foot" id="gateFoot">Enter your passcode.</p>
+    </div>
+  </section>
+
+  <div id="stage" class="stage" hidden>
+    <div id="app" class="app">
+      <header class="topbar">
+        <div class="brand"><img src="icons/favicon-32.png" width="28" height="28" alt=""><h1 id="viewTitle">Agents</h1></div>
+        <button type="button" class="icon-btn" id="searchBtn" aria-label="Search agents">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="icon-btn" id="addBtn" aria-label="Add agent">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <button type="button" class="icon-btn" id="menuBtn" aria-label="Menu" aria-haspopup="menu">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+        </button>
+      </header>
+      <main id="views" class="views">
+        <section class="view" id="view-agents" data-view="agents"></section>
+        <section class="view" id="view-groups" data-view="groups" hidden></section>
+        <section class="view" id="view-activity" data-view="activity" hidden></section>
+        <section class="view" id="view-you" data-view="you" hidden></section>
+      </main>
+      <nav class="tabbar" aria-label="Main">
+        <button type="button" class="tab active" data-tab="agents" aria-current="page"><span class="tab-ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6"/></svg></span><span class="tab-lbl">Agents</span></button>
+        <button type="button" class="tab" data-tab="groups"><span class="tab-ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5M15 14.5c3 0 6 1.3 6 4.5"/></svg></span><span class="tab-lbl">Groups</span></button>
+        <button type="button" class="tab" data-tab="activity"><span class="tab-ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg></span><span class="tab-lbl">Activity</span></button>
+        <button type="button" class="tab" data-tab="you"><span class="tab-ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg></span><span class="tab-lbl">You</span></button>
+      </nav>
+    </div>
+      </div>
+</div>
+<div id="layerRoot"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>

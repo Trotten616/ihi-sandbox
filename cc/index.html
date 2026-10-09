@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>[SANDBOX] Infinity Home Improvement Command Center</title>
+  <meta name="description" content="Infinity Home Improvement Command Center: sales reps' day, leads, calendar and results (sample data)." />
+  <meta name="theme-color" content="#facc15" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Command Center" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="assets/infinity-logo.png?v=16" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png" />
+  <link rel="stylesheet" href="css/styles.css?v=16" />
+  <link rel="stylesheet" href="css/mobile-shell.css?v=16" />
+  <link rel="stylesheet" href="css/mobile-home-leads.css?v=16" />
+  <link rel="stylesheet" href="css/mobile-appts-msgs.css?v=16" />
+  <link rel="stylesheet" href="css/mobile-reports-activity.css?v=16" />
+
+  <!-- SANDBOX-OVERLAY:BEGIN (added by /workspace/sandbox/make-cc-sandbox.sh; not in the source repo) -->
+  <link rel="manifest" href="manifest.webmanifest?sb=20261008045503" />
+  <link rel="stylesheet" href="/ihi-sandbox/shared/sandbox.css?b=20261008045503" />
+  <script src="/ihi-sandbox/shared/sandbox.js?b=20261008045503" data-app="cc" data-layout="cc" data-unlock-preset="ihi-gate-v16"></script>
+  <!-- SANDBOX-OVERLAY:END -->
+</head>
+<body data-sandbox="1">
+  <div class="sample-banner" role="status">
+    SAMPLE DATA — NOT LIVE
+    <span class="banner-detail">Design draft for Infinity Home Improvement · no MarketSharp / Hatch / GHL / Access connection</span>
+  </div>
+
+  <div class="m-offline-bar" id="m-offline" role="status">You’re offline. Reconnect to see current numbers.</div>
+
+  <!-- DEMO PASSCODE GATE (v16) — keeps casual visitors out of the preview; sample data only -->
+  <section id="screen-gate" class="screen" aria-label="Enter passcode">
+    <div class="login-card gate-card">
+      <img class="brand-logo brand-logo-login" src="assets/infinity-logo.png?v=16" width="280" height="72" alt="Infinity Home Improvement" />
+      <h1>Infinity Home Improvement Command Center <span class="gate-tag">Preview</span></h1>
+      <p class="login-sub">Enter the demo passcode to continue. This preview uses sample data only.</p>
+      <form id="gate-form" novalidate>
+        <div class="field">
+          <label for="gate-code">Passcode</label>
+          <input id="gate-code" name="gate-code" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" required />
+        </div>
+        <p class="login-error" id="gate-error" role="alert" hidden></p>
+        <button type="submit" class="btn btn-primary">Continue</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- LOGIN -->
+  <section id="screen-login" class="screen active" aria-label="Sign in">
+    <div class="login-card">
+      <div class="login-brand">
+        <img class="brand-logo brand-logo-login" src="assets/infinity-logo.png?v=16" width="280" height="72" alt="Infinity Home Improvement" />
+        <div>
+          <h1>Infinity Home Improvement Command Center</h1>
+        </div>
+      </div>
+      <p class="login-notice" id="login-notice" role="status" hidden></p>
+      <p class="login-sub"><span class="desk-copy">Infinity Home Improvement Command Center — one place to see leads, appointments, texts, reports, and connections across your systems.</span><span class="phone-copy">Your appointments, leads and results.</span></p>
+
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label for="email">Work email</label>
+          <input id="email" name="email" type="email" autocomplete="username" placeholder="you@example.com" value="manager.sample@example.com" required aria-describedby="email-match" />
+          <span class="hint" id="email-match" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" value="sample-only" required />
+          <span class="hint">Any password works in this demo.</span>
+        </div>
+        <div class="field">
+          <label for="login-user">Sign in as (sample staff)</label>
+          <select id="login-user" class="select" aria-label="Sample staff user">
+            <!-- filled from SampleData.users by js/app.js (grouped by role) -->
+            <option value="u-manager">Manager Sample — Manager</option>
+          </select>
+          <span class="hint desk-copy">Marketers land on their own personal Home. Managers, confirmers, and data processors get their role Home. Picking a name fills in the email; typing an email picks the person.</span>
+        </div>
+        <div class="field">
+          <span id="office-label" style="display:block;font-weight:600;font-size:0.9rem;margin-bottom:0.35rem;">Which office?</span>
+          <div class="office-pills" role="group" aria-labelledby="office-label">
+            <button type="button" class="office-pill" data-office-btn="MI" aria-pressed="true">Michigan</button>
+            <button type="button" class="office-pill" data-office-btn="IL" aria-pressed="false">Illinois</button>
+          </div>
+          <span class="hint">MI and IL stay separate. You can switch anytime after login.</span>
+        </div>
+        <p class="login-error" id="login-error" role="alert" hidden></p>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
+      <p class="login-footer">Infinity Home Improvement · Wyoming, MI</p>
+    </div>
+  </section>
+
+  <!-- APP -->
+  <section id="screen-app" class="screen" aria-label="Application">
+    <aside class="sidebar" aria-label="Main navigation">
+      <div class="sidebar-brand">
+        <img class="brand-logo brand-logo-sidebar" src="assets/infinity-logo.png?v=16" width="160" height="40" alt="Infinity Home Improvement" />
+        <div>
+          <strong>Infinity Home Improvement Command Center</strong>
+          <span>Design draft</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <button type="button" class="nav-btn active" data-view="home"><span class="nav-icon" aria-hidden="true">⌂</span> Home</button>
+        <button type="button" class="nav-btn" data-view="leads"><span class="nav-icon" aria-hidden="true">☰</span> Leads</button>
+        <button type="button" class="nav-btn" data-view="appointments"><span class="nav-icon" aria-hidden="true">▦</span> Appointments</button>
+        <button type="button" class="nav-btn" data-view="sales"><span class="nav-icon" aria-hidden="true">$</span> Sales</button>
+        <button type="button" class="nav-btn" data-view="activity" title="Activity: calls, texts, emails and to-dos tied to your leads, with due dates and results."><span class="nav-icon" aria-hidden="true">✓</span> Activity</button>
+        <button type="button" class="nav-btn" data-view="messages"><span class="nav-icon" aria-hidden="true">💬</span> Messages</button>
+        <button type="button" class="nav-btn" data-view="speed"><span class="nav-icon" aria-hidden="true">⚡</span> Speed to Lead</button>
+        <button type="button" class="nav-btn" data-view="reports"><span class="nav-icon" aria-hidden="true">▤</span> Reports</button>
+        <button type="button" class="nav-btn" data-view="integrations"><span class="nav-icon" aria-hidden="true">☍</span> Connections</button>
+        <button type="button" class="nav-btn" data-view="settings"><span class="nav-icon" aria-hidden="true">⚙</span> Settings</button>
+
+        <details class="nav-more">
+          <summary>More</summary>
+          <button type="button" class="nav-btn" data-view="marketing"><span class="nav-icon" aria-hidden="true">📣</span> Marketing</button>
+          <button type="button" class="nav-btn" data-view="audit"><span class="nav-icon" aria-hidden="true">⏱</span> Audit log</button>
+        </details>
+      </nav>
+    </aside>
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <button type="button" class="icon-btn menu-toggle" id="menu-toggle" aria-label="Open menu">☰</button>
+        <img class="m-logo-mark" src="assets/icons/icon-96.png" width="32" height="32" alt="" aria-hidden="true" />
+        <div class="topbar-titles">
+          <h1 class="page-title" id="page-title">Home</h1>
+          <p class="page-tip" id="page-tip">Your morning checklist — what needs attention today.</p>
+          <p class="m-viewing" id="m-viewing" hidden></p>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="office-switch" role="group" aria-label="Office">
+          <button type="button" data-office-btn="MI" aria-pressed="true">Michigan</button>
+          <button type="button" data-office-btn="IL" aria-pressed="false">Illinois</button>
+        </div>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Switch to dark mode">☾</button>
+        <div class="user-chip" title="Sample user" id="user-chip">
+          <span class="avatar" id="user-avatar">MS</span>
+          <span id="user-name">Manager Sample</span>
+          <span class="user-role" id="user-role">Manager</span>
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" id="btn-logout">Sign out</button>
+        <button type="button" class="icon-btn m-menu-btn" id="m-menu-btn" aria-label="Menu: sign out, theme, install app">⋮</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <div id="view-home" class="view active">
+        <div id="personal-home" hidden></div>
+        <div id="hq-home">
+        <div class="section-head">
+          <div>
+            <h2>Today at a glance · <span data-office-label>Michigan</span></h2>
+            <p class="funnel-strip" id="funnel-strip"></p>
+          </div>
+          <div class="viewas-pick" id="viewas-wrap" hidden>
+            <label for="viewas-select">View a marketer’s Home <button type="button" class="helper-tip" title="See exactly what a marketer sees when they sign in (their personal numbers).">?</button></label>
+            <select id="viewas-select" class="select"></select>
+          </div>
+        </div>
+        <div class="grid-kpis" id="kpi-grid"></div>
+        <div class="actions-row">
+          <div class="card card-pad">
+            <div class="section-head" style="margin-bottom:0.75rem;">
+              <div>
+                <h2>Do this next</h2>
+                <p>One tap opens the right screen.</p>
+              </div>
+            </div>
+            <div id="next-actions" class="stack-sm"></div>
+          </div>
+          <div class="card card-pad">
+            <div class="section-head" style="margin-bottom:0.75rem;">
+              <div>
+                <h2>Where numbers come from</h2>
+                <p>Each badge shows which system owns that data today.</p>
+              </div>
+            </div>
+            <div class="stack-sm" style="font-size:0.9rem;color:var(--text-muted);">
+              <div><span class="badge badge-MarketSharp">MarketSharp</span> Inquiries, sets, issued, demos, sold</div>
+              <div><span class="badge badge-Hatch">Hatch</span> Text conversations</div>
+              <div><span class="badge badge-GoHighLevel">GoHighLevel</span> Marketing campaigns &amp; AI voice</div>
+              <div><span class="badge badge-Access">Access</span> Michigan Access jobs still pending</div>
+              <div><span class="badge badge-Command">Infinity Home Improvement Command Center</span> Confirm queue &amp; this workspace</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div id="view-leads" class="view">
+        <div class="filters" id="lead-filters"></div>
+        <div id="leads-table"></div>
+      </div>
+
+      <div id="view-appointments" class="view">
+        <div id="appointments-root"></div>
+      </div>
+
+      <div id="view-sales" class="view">
+        <div id="sales-root"></div>
+      </div>
+
+      <div id="view-activity" class="view">
+        <div id="activity-root"></div>
+      </div>
+
+      <div id="view-messages" class="view">
+        <div id="messages-root"></div>
+      </div>
+
+      <div id="view-speed" class="view">
+        <div id="speed-root"></div>
+      </div>
+
+      <div id="view-reports" class="view">
+        <div id="reports-root"></div>
+      </div>
+
+      <div id="view-integrations" class="view">
+        <div id="integrations-root"></div>
+      </div>
+
+      <div id="view-settings" class="view">
+        <div id="settings-root"></div>
+      </div>
+
+      <div id="view-marketing" class="view">
+        <div class="section-head">
+          <div>
+            <h2>Marketing campaigns</h2>
+            <p>GoHighLevel sequences and AI voice status — sample cards only.</p>
+          </div>
+        </div>
+        <div id="marketing-root"></div>
+      </div>
+
+      <div id="view-unavailable" class="view" aria-live="polite"></div>
+
+      <!-- v16: pages from the registry (window.IHIPages) render here; #view-phone holds phone shell cards -->
+      <div id="view-page" class="view"><div id="page-root"></div></div>
+      <div id="view-phone" class="view" aria-live="polite"></div>
+
+      <div id="view-audit" class="view">
+        <div class="section-head">
+          <div>
+            <h2>Audit log</h2>
+            <p>System record of who changed what in Command Center (sample). Lead calls, texts and to-dos live under <strong>Activity</strong>.</p>
+          </div>
+        </div>
+        <div id="audit-root"></div>
+      </div>
+    </main>
+
+    <!-- v16 phone bottom tab bar (≤760px, sales reps): built by js/mobile-shell.js -->
+    <nav class="m-tabbar" id="m-tabbar" aria-label="Phone tabs"></nav>
+  </section>
+
+  <!-- Lead detail drawer -->
+  <div class="drawer-backdrop" aria-hidden="true"></div>
+  <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <div class="drawer-header">
+      <button type="button" class="m-back" id="drawer-back" aria-label="Back">‹ Back</button>
+      <div>
+        <h2 id="drawer-title">Lead</h2>
+        <div id="drawer-sub"></div>
+      </div>
+      <button type="button" class="icon-btn" id="drawer-close" aria-label="Close">✕</button>
+    </div>
+    <div class="drawer-body" id="drawer-body"></div>
+  </aside>
+
+  <!-- Report preview modal -->
+  <div class="modal-backdrop" id="report-modal-backdrop" aria-hidden="true"></div>
+  <div class="modal" id="report-modal" role="dialog" aria-modal="true" aria-labelledby="report-modal-title" hidden>
+    <div class="modal-header">
+      <button type="button" class="m-back" id="report-modal-back" aria-label="Back">‹ Back</button>
+      <div>
+        <h2 id="report-modal-title">Report</h2>
+        <p id="report-modal-sub" class="modal-sub"></p>
+      </div>
+      <button type="button" class="icon-btn" id="report-modal-close" aria-label="Close preview">✕</button>
+    </div>
+    <div class="modal-body" id="report-modal-body"></div>
+  </div>
+
+  <script src="js/mobile-utils.js?v=16"></script>
+  <script src="js/sample-data.js?v=16"></script>
+  <script src="js/access-reports.js?v=16"></script>
+  <script src="js/integrations.js?v=16"></script>
+  <script src="js/data/metrics.js?v=16"></script>
+  <script src="js/data/activity-defs.js?v=16"></script>
+  <script src="js/data/identity-map.js?v=16"></script>
+  <script src="js/data/adapters/sample-adapter.js?v=16"></script>
+  <script src="js/data/adapters/marketsharp-adapter.js?v=16"></script>
+  <script src="js/data/adapters/access-adapter.js?v=16"></script>
+  <script src="js/data/adapters/hatch-adapter.js?v=16"></script>
+  <script src="js/data/adapters/tapit-adapter.js?v=16"></script>
+  <script src="js/data/adapters/sample-trail.js?v=16"></script>
+  <script src="js/data/dashboard-data.js?v=16"></script>
+  <script src="js/data/customer-data.js?v=16"></script>
+  <script src="js/activity-view.js?v=16"></script>
+  <script src="js/people-log.js?v=16"></script>
+  <script src="js/speed-to-lead.js?v=16"></script>
+  <script src="js/customer-record.js?v=16"></script>
+  <script src="js/personal-dashboard.js?v=16"></script>
+  <script src="js/app.js?v=16"></script>
+  <script src="js/mobile-shell.js?v=16"></script>
+  <!-- v16 page modules (register with window.IHIPages): add <script> tags below this line, one per file -->
+  <script src="js/data/rep-appts.js?v=16"></script>
+  <script src="js/pages/rep-leads.js?v=16"></script>
+  <script src="js/pages/calendar.js?v=16"></script>
+  <script src="js/pages/my-activity.js?v=16"></script>
+</body>
+</html>

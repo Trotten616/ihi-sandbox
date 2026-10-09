@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IntelliGro.AI Agent Platform · Sandbox</title>
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="sim.css">
+<link rel=stylesheet href="/ihi-sandbox/shared/sandbox.css">
+</head>
+<body>
+<div id="igd-shell">
+
+<header>
+  <div class="brand">
+    <!-- IntelliGro.AI logo: hexagon "node" with a growing sprout -->
+    <svg width="40" height="40" viewBox="0 0 64 64" role="img" aria-label="IntelliGro.AI logo">
+      <defs>
+        <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#22c55e"/><stop offset="1" stop-color="#14b8a6"/>
+        </linearGradient>
+      </defs>
+      <path d="M32 3 L57 17.5 L57 46.5 L32 61 L7 46.5 L7 17.5 Z" fill="none" stroke="url(#lg)" stroke-width="3.5" stroke-linejoin="round"/>
+      <path d="M32 50 L32 28" stroke="url(#lg)" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M32 34 C32 24 24 19 16 20 C16 29 23 34 32 34 Z" fill="url(#lg)"/>
+      <path d="M32 29 C32 20 39 15 48 15 C48 24 41 29 32 29 Z" fill="url(#lg)" opacity=".75"/>
+      <circle cx="32" cy="50" r="4" fill="#e6edf6"/>
+      <circle cx="16" cy="44" r="2.5" fill="#14b8a6"/><circle cx="48" cy="44" r="2.5" fill="#14b8a6"/>
+      <path d="M18.5 44 L28 50 M45.5 44 L36 50" stroke="#14b8a6" stroke-width="1.6" opacity=".8"/>
+    </svg>
+    <div>
+      <h1>IntelliGro<span>.AI</span></h1>
+      <small>Agent Platform</small>
+    </div>
+  </div>
+  <div class="search">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8b98ab" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Search agents or roles…  (press / to focus)" autocomplete="off">
+  </div>
+  <div class="top-right">
+    <div class="status-pill"><span class="dot"></span>Sandbox · sample data</div>
+    <div class="avatar">TO</div>
+  </div>
+</header>
+
+<aside>
+  <nav class="nav-top">
+    <a class="active" href="#">&#9638;&nbsp; Dashboard</a>
+  </nav>
+  <div id="sidebar"></div>
+  <p class="side-hint">Click a name to open a simulated chat. Sandbox: no real bots are contacted.</p>
+</aside>
+
+<main>
+  <div class="hero">
+    <div>
+      <h2 id="greet">Hello, Thomas</h2>
+      <p id="summary"></p>
+    </div>
+    <div class="soon">
+      <span class="lbl">Quick actions (coming soon)</span>
+      <button class="btn" disabled>&#9889; Morning brief</button>
+      <button class="btn" disabled>&#10003; Approvals</button>
+      <button class="btn" disabled>+ New task</button>
+      <button class="btn stop-all" id="stopAll" type="button">&#9632; Stop all</button>
+    </div>
+  </div>
+
+  <div id="groups"></div>
+  <p class="empty" id="empty">No agents match your search.</p>
+</main>
+
+<section class="panel" aria-label="Notes and quick launch">
+  <div class="panel-head">
+    <div class="ico" id="pIco">HE</div>
+    <div><h4 id="pName">Ops Lead</h4><p id="pRole"></p></div>
+    <select id="pSel" aria-label="Choose agent"></select>
+  </div>
+  <div class="panel-body">
+    <button class="btn primary open-full" id="openFull">Open chat (simulated)</button>
+
+    <div>
+      <div class="box-h"><span>My notes</span><span class="saved" id="saved"></span></div>
+      <textarea id="notes" placeholder="Jot down what you want to ask or remember for this agent…"></textarea>
+      <p class="hint">Sandbox notes are saved in this browser only and are cleared by Reset. They are never sent anywhere.</p>
+    </div>
+
+    <div>
+      <div class="box-h"><span>Recently opened</span></div>
+      <div class="recent" id="recent"></div>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+</div>
+
+<script src="/ihi-sandbox/shared/sandbox.js" data-app="agents-desktop"></script>
+<script src="agents.js"></script>
+<script src="app.js"></script>
+<script src="sim.js"></script>
+</body>
+</html>
