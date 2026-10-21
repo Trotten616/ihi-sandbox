@@ -202,7 +202,7 @@ var d={
   },
   {
    "id": "L1009",
-   "name": "Laura Brenner",
+   "name": "Lisa Brenner",
    "phone": "(616) 555-0134",
    "city": "Portage, MI",
    "source": "Referral",
@@ -722,7 +722,7 @@ var d={
   },
   {
    "id": "L1034",
-   "name": "Laura Ramsey",
+   "name": "Lisa Ramsey",
    "phone": "(616) 555-0141",
    "city": "Kentwood, MI",
    "source": "Website",
@@ -968,7 +968,7 @@ var d={
   {
    "id": "CB12",
    "leadId": "L1034",
-   "name": "Laura Ramsey",
+   "name": "Lisa Ramsey",
    "phone": "(616) 555-0141",
    "dueOffsetMin": 425,
    "reason": "Waiting on insurance"
@@ -977,7 +977,7 @@ var d={
  "stl": [
   {
    "id": "S1",
-   "name": "Laura Bjornsen",
+   "name": "Lisa Bjornsen",
    "phone": "(269) 555-0228",
    "city": "Kalamazoo, MI",
    "source": "HomeBuddy",

@@ -13,13 +13,13 @@ window.SampleData = {
 
     /* Named staff (sample logins — emails are fake @example.com). marketer:true → personal Home dashboard */
     { id: "u-chris", name: "Chris Baareman", email: "chris.baareman@example.com", role: "Setter", roleLabel: "Marketer", initials: "CB", officeDefault: "MI", marketer: true },
-    { id: "u-laura", name: "Laura Keller", email: "laura.keller@example.com", role: "Setter", roleLabel: "Marketer", initials: "LK", officeDefault: "MI", marketer: true },
-    { id: "u-dana", name: "Dana Howard", email: "dana.howard@example.com", role: "Setter", roleLabel: "Marketer", initials: "DH", officeDefault: "MI", marketer: true, scheduleNote: "Doesn’t work Mondays" },
+    { id: "u-lisa", name: "Lisa Kolenda", email: "lisa.kolenda@example.com", role: "Setter", roleLabel: "Marketer", initials: "LK", officeDefault: "MI", marketer: true },
+    { id: "u-diana", name: "Diana Honicutt", email: "diana.honicutt@example.com", role: "Setter", roleLabel: "Marketer", initials: "DH", officeDefault: "MI", marketer: true, scheduleNote: "Doesn’t work Mondays" },
     { id: "u-cindy", name: "Cindy Moreno", email: "cindy.moreno@example.com", role: "Setter", roleLabel: "Marketer", initials: "CM", officeDefault: "MI", marketer: true },
     { id: "u-karrie", name: "Karrie Turashoff", email: "karrie.turashoff@example.com", role: "Setter", roleLabel: "Marketer", initials: "KT", officeDefault: "MI", marketer: true, scheduleNote: "Mon–Fri" },
-    { id: "u-sara", name: "Sara Vance", email: "sara.vance@example.com", role: "Setter", roleLabel: "Marketer", initials: "SV", officeDefault: "MI", marketer: true },
-    { id: "u-sandra", name: "Sandra Webb", email: "sandra.webb@example.com", role: "Setter", roleLabel: "Marketer", initials: "SW", officeDefault: "MI", marketer: true },
-    { id: "u-stella", name: "Stella Shaw", email: "stella.shaw@example.com", role: "Setter", roleLabel: "Marketer", initials: "SS", officeDefault: "MI", marketer: true, scheduleNote: "Started Mar 2026" },
+    { id: "u-sally", name: "Sally VanHorn", email: "sally.vanhorn@example.com", role: "Setter", roleLabel: "Marketer", initials: "SV", officeDefault: "MI", marketer: true },
+    { id: "u-saundra", name: "Saundra Wells", email: "saundra.wells@example.com", role: "Setter", roleLabel: "Marketer", initials: "SW", officeDefault: "MI", marketer: true },
+    { id: "u-stacy", name: "Stacy Snively", email: "stacy.snively@example.com", role: "Setter", roleLabel: "Marketer", initials: "SS", officeDefault: "MI", marketer: true, scheduleNote: "Started Mar 2026" },
     { id: "u-emily", name: "Emily Thompson", email: "emily.thompson@example.com", role: "Data processor", initials: "ET", officeDefault: "MI" },
     { id: "u-tylerc", name: "Tyler Carpenter", email: "tyler.carpenter@example.com", role: "Data processor", initials: "TC", officeDefault: "MI" },
     { id: "u-sheila", name: "Sheila Lung", email: "sheila.lung@example.com", role: "Confirmer", initials: "SL", officeDefault: "MI" },

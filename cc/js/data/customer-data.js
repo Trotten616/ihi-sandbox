@@ -171,7 +171,7 @@
       const od = (+q.date.slice(0, 4) - yrs) + q.date.slice(4, 8) + pad(1 + Math.floor(u("od:" + id) * 27));
       const prod = pick("op:" + id, OLD_PRODUCTS), src = pick("os:" + id, OLD_SOURCES);
       const oa = nextWork(od, 3);
-      oldInq = { id: id + "-O", date: od, source: src, product: prod, kind: "", jobSite: fullAddr, status: "Appointment", statusSub: "Set", canvasser: src === "Canvass" ? "Jake Lindqvist" : "", telemarketer: pick("ot:" + id, ["Laura Keller", "Cindy Moreno", "Former employee"]), promoter: src === "Home Show" ? "Show booth team" : "",
+      oldInq = { id: id + "-O", date: od, source: src, product: prod, kind: "", jobSite: fullAddr, status: "Appointment", statusSub: "Set", canvasser: src === "Canvass" ? "Jake Lindqvist" : "", telemarketer: pick("ot:" + id, ["Lisa Kolenda", "Cindy Moreno", "Former employee"]), promoter: src === "Home Show" ? "Show booth team" : "",
         appointments: [{ id: id + "-OA", date: oa, time: "18:00", type: "Sales Presentation", salesperson: repFor(id + "o"), result: repeat ? "SOLD" : "DEMO NO SALE", resultReason: repeat ? "" : pick("orr:" + id, REASONS_DNS), system: "MarketSharp" }], system: "MarketSharp", old: true };
       inquiries.push(oldInq);
     }

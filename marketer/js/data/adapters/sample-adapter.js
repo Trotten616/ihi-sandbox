@@ -19,13 +19,13 @@
   const ALL_WEEK = [1, 2, 3, 4, 5, 6]; /* Mon–Sat; nobody phones on Sunday */
   const PROFILES = {
     "u-chris":   { setsPerDay: 6.3, setRate: 0.33, issue: 0.77, sit: 0.64, close: 0.25, avgSale: 12600, ilShare: 0.18, callsPerDay: 78, workDays: ALL_WEEK },
-    "u-laura":    { setsPerDay: 5.6, setRate: 0.31, issue: 0.79, sit: 0.61, close: 0.27, avgSale: 11800, ilShare: 0.12, callsPerDay: 70, workDays: ALL_WEEK },
-    "u-dana":   { setsPerDay: 4.8, setRate: 0.35, issue: 0.74, sit: 0.67, close: 0.21, avgSale: 13900, ilShare: 0.10, callsPerDay: 62, workDays: [2, 3, 4, 5, 6] /* off Mondays */ },
+    "u-lisa":    { setsPerDay: 5.6, setRate: 0.31, issue: 0.79, sit: 0.61, close: 0.27, avgSale: 11800, ilShare: 0.12, callsPerDay: 70, workDays: ALL_WEEK },
+    "u-diana":   { setsPerDay: 4.8, setRate: 0.35, issue: 0.74, sit: 0.67, close: 0.21, avgSale: 13900, ilShare: 0.10, callsPerDay: 62, workDays: [2, 3, 4, 5, 6] /* off Mondays */ },
     "u-cindy":   { setsPerDay: 7.1, setRate: 0.30, issue: 0.72, sit: 0.57, close: 0.19, avgSale: 10900, ilShare: 0.22, callsPerDay: 88, workDays: ALL_WEEK },
     "u-karrie":  { setsPerDay: 4.2, setRate: 0.34, issue: 0.80, sit: 0.69, close: 0.29, avgSale: 14200, ilShare: 0.08, callsPerDay: 58, workDays: [1, 2, 3, 4, 5] },
-    "u-sara":   { setsPerDay: 5.1, setRate: 0.32, issue: 0.75, sit: 0.60, close: 0.23, avgSale: 12100, ilShare: 0.15, callsPerDay: 66, workDays: ALL_WEEK },
-    "u-sandra": { setsPerDay: 3.6, setRate: 0.36, issue: 0.78, sit: 0.63, close: 0.17, avgSale: 9800, ilShare: 0.30, callsPerDay: 52, workDays: ALL_WEEK },
-    "u-stella":   { setsPerDay: 4.4, setRate: 0.29, issue: 0.71, sit: 0.56, close: 0.16, avgSale: 11200, ilShare: 0.20, callsPerDay: 74, workDays: ALL_WEEK, start: "2026-03-16" /* newer hire → no last-year numbers */ }
+    "u-sally":   { setsPerDay: 5.1, setRate: 0.32, issue: 0.75, sit: 0.60, close: 0.23, avgSale: 12100, ilShare: 0.15, callsPerDay: 66, workDays: ALL_WEEK },
+    "u-saundra": { setsPerDay: 3.6, setRate: 0.36, issue: 0.78, sit: 0.63, close: 0.17, avgSale: 9800, ilShare: 0.30, callsPerDay: 52, workDays: ALL_WEEK },
+    "u-stacy":   { setsPerDay: 4.4, setRate: 0.29, issue: 0.71, sit: 0.56, close: 0.16, avgSale: 11200, ilShare: 0.20, callsPerDay: 74, workDays: ALL_WEEK, start: "2026-03-16" /* newer hire → no last-year numbers */ }
   };
 
   const SEASON = { 1: 0.72, 2: 0.78, 3: 0.95, 4: 1.08, 5: 1.15, 6: 1.12, 7: 1.05, 8: 1.05, 9: 1.0, 10: 0.95, 11: 0.85, 12: 0.65 };

@@ -15,13 +15,13 @@
   const PEOPLE = [
     /* id,          Access STAFF, INITIALS, MarketSharp names (both company ids), Hatch member id */
     ["u-chris",   "S-CB",  "CJB", ["Chris Baareman", "Christopher Baareman"], null],
-    ["u-laura",    "S-LK",  "LMK", ["Laura Keller"], null],
-    ["u-dana",   "S-DH",  "DLH", ["Dana Howard"], null],
+    ["u-lisa",    "S-LK",  "LMK", ["Lisa Kolenda"], null],
+    ["u-diana",   "S-DH",  "DLH", ["Diana Honicutt"], null],
     ["u-cindy",   "S-CM",  "CAM", ["Cindy Moreno"], null],
     ["u-karrie",  "S-KT",  "KAT", ["Karrie Turashoff"], null],
-    ["u-sara",   "S-SV",  "SAV", ["Sara Vance", "Sara Van Horn"], null],
-    ["u-sandra", "S-SW",  "SRW", ["Sandra Webb"], null],
-    ["u-stella",   "S-SS",  "SKS", ["Stella Shaw"], null],
+    ["u-sally",   "S-SV",  "SAV", ["Sally VanHorn", "Sally Van Horn"], null],
+    ["u-saundra", "S-SW",  "SRW", ["Saundra Wells"], null],
+    ["u-stacy",   "S-SS",  "SKS", ["Stacy Snively"], null],
     ["u-sheila",  "S-SL",  "SML", ["Sheila Lung"], null], /* real MS lists "SHEILA LUNG" + "Sheila Lung" (matched case-insensitively) */
     ["u-tylerb",  "S-TB",  "TJB", ["Tyler Budd"], null],
     ["u-emily",   "S-ET",  "EKT", ["Emily Thompson"], null],
@@ -33,15 +33,15 @@
   /* v15 — the ONLY display spellings (Thomas 2026-10-07). Every screen takes names from SampleData.users; this list
    * guards against drift (checked in the v15 test run). */
   const CANONICAL = {
-    "u-chris": "Chris Baareman", "u-laura": "Laura Keller", "u-dana": "Dana Howard", "u-cindy": "Cindy Moreno",
-    "u-karrie": "Karrie Turashoff", "u-sara": "Sara Vance", "u-sandra": "Sandra Webb", "u-stella": "Stella Shaw",
+    "u-chris": "Chris Baareman", "u-lisa": "Lisa Kolenda", "u-diana": "Diana Honicutt", "u-cindy": "Cindy Moreno",
+    "u-karrie": "Karrie Turashoff", "u-sally": "Sally VanHorn", "u-saundra": "Saundra Wells", "u-stacy": "Stacy Snively",
     "u-emily": "Emily Thompson", "u-tylerc": "Tyler Carpenter", "u-sheila": "Sheila Lung", "u-tylerb": "Tyler Budd", "u-tom": "Tom Otten"
   };
   /* Lookalikes that must NEVER map to our staff. Some are real, different, inactive people in Access STAFF /
-   * MarketSharp Employees (Shelia Thompson, David Smiddy, Jeff Shaw, LaJanette Lung); others are misspellings seen
+   * MarketSharp Employees (Shelia Thompson, David Smiddy, Jeff Snively, LaJanette Lung); others are misspellings seen
    * in reports. Match on exact name or staff code only, never fuzzy. */
-  const LOOKALIKES = ["Shelia Long", "Shelia Lung", "Sheila Long", "Shelia Thompson", "Stella Smiddy", "David Smiddy", "Jeff Shaw",
-    "Chris Baerman", "Chris Bareman", "LaJanette Lung", "Lajanette 2 Lung", "Sara Vanhorne", "Dana Honeycutt", "Karrie Turashof"];
+  const LOOKALIKES = ["Shelia Long", "Shelia Lung", "Sheila Long", "Shelia Thompson", "Stacy Smiddy", "David Smiddy", "Jeff Snively",
+    "Chris Baerman", "Chris Bareman", "LaJanette Lung", "Lajanette 2 Lung", "Sally Vanhorne", "Diana Honeycutt", "Karrie Turashof"];
   const HATCH_INTEGRATION_USER = "u-tom"; /* the employee id configured in Hatch's MarketSharp integration */
 
   const IdentityMap = {
