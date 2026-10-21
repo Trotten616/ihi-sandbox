@@ -1,0 +1,32 @@
+{
+  "app": "home-base",
+  "label": "IntelliGro.AI Home Base Command Center",
+  "builtAt": "2026-10-10T11:22:53-04:00",
+  "source": "site/cc (archive:main) + site/agents-desktop + sample-agents.js",
+  "commit": "922109c",
+  "storageKeys": [
+    "ihb-act-v1:",
+    "ihb-agents-chat.",
+    "ihb-agents-notes.",
+    "ihb-agents-notesTime.",
+    "ihb-agents-paused",
+    "ihb-agents-recent",
+    "ihb-agents-selected",
+    "ihb-agents-status",
+    "ihb-command-office",
+    "ihb-command-theme",
+    "ihb-command-user",
+    "ihb-gate-v16",
+    "ihb-idle-minutes",
+    "ihb-legacy-command-office",
+    "ihb-legacy-command-theme",
+    "ihb-phone-rep:",
+    "ihb-sample-v1:",
+    "ihb-txt-v3:",
+    "ihb-view-as-rep"
+  ],
+  "gateKeys": [
+    "ihb-gate-v16"
+  ],
+  "agentPlatform": "agent-platform/ (sample agents, simulated actions)"
+}

@@ -1,0 +1,138 @@
+/* Agent Platform inside the IntelliGro.AI Home Base Command Center (SANDBOX, added by make-home-base.sh).
+   Restyles the Agent Platform to the Command Center look: same font, colors, cards and buttons, light + dark
+   (data-theme follows the Command Center page, see embed.js). Loaded after styles.css and sim.css. */
+:root {
+  --bg: #f4f6f9; --panel: #ffffff; --panel2: #ffffff; --line: #d8dee8; --text: #1a2332; --muted: #5a6577;
+  --accent: #1f6feb; --accent-hover: #1858c2; --accent-soft: #e8f0fe; --hover: #eef1f6; --g1: #1a7f4b;
+  --danger: #c62828; --danger-soft: #fdecea; --warn: #b86e00; --warn-soft: #fff4e0;
+  --work: #0b6e99; --personal: #c2410c; --mc: #1a7f4b;
+  --w-bg: #e6f5fb; --w-fg: #0b6e99; --p-bg: #fdeee6; --p-fg: #b4400b; --m-bg: #e6f6ee; --m-fg: #1a7f4b;
+  --shadow: 0 1px 3px rgba(26, 35, 50, 0.08), 0 4px 16px rgba(26, 35, 50, 0.04);
+  --focus: 0 0 0 3px rgba(31, 111, 235, 0.35);
+  --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color-scheme: light;
+}
+[data-theme="dark"] {
+  --bg: #0f141c; --panel: #1a2230; --panel2: #1a2230; --line: #2f3b4f; --text: #e8edf5; --muted: #a0aabe;
+  --accent: #4d8ef7; --accent-hover: #6ba0f8; --accent-soft: #1a2d4d; --hover: #242e3f; --g1: #3dd68c;
+  --danger: #f07178; --danger-soft: #3a1a1c; --warn: #f0b429; --warn-soft: #3a2e12;
+  --work: #5ec8f0; --personal: #fdba74; --mc: #3dd68c;
+  --w-bg: #143340; --w-fg: #5ec8f0; --p-bg: #3a2414; --p-fg: #fdba74; --m-bg: #143528; --m-fg: #3dd68c;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.25);
+  --focus: 0 0 0 3px rgba(77, 142, 247, 0.4);
+  color-scheme: dark;
+}
+html, body { background: var(--bg); color: var(--text); font-family: var(--font); }
+body { font-size: 14px; }
+
+/* shell: the Command Center already shows the title, logo and user, so the frame starts with search */
+#igd-shell { grid-template-rows: 56px minmax(0, 1fr); grid-template-columns: 220px minmax(0, 1fr) 320px; }
+header { background: var(--panel); border-bottom: 1px solid var(--line); padding: 0 16px; }
+header .brand, header .avatar { display: none; }
+.search { margin-left: 0; max-width: 520px; }
+.search input, .panel-head select, textarea#notes, .igd-in input {
+  background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 8px; font-size: 14px;
+}
+.search input { padding: 9px 12px 9px 34px; }
+.search input:focus, .panel-head select:focus, textarea#notes:focus, .igd-in input:focus { border-color: var(--accent); box-shadow: var(--focus); outline: none; }
+.status-pill { background: var(--hover); border-color: var(--line); color: var(--muted); font-weight: 600; }
+.dot { background: var(--g1); box-shadow: none; }
+
+/* agent list (wide frames only) */
+aside { background: var(--panel2); border-right: 1px solid var(--line); }
+.nav-top a { color: var(--text); font-weight: 600; }
+.nav-top a.active { background: var(--accent-soft); color: var(--accent); }
+.group-title { color: var(--muted); }
+.group-title .count { background: var(--hover); color: var(--muted); }
+.agent-link { color: var(--text); font-size: 13.5px; }
+.agent-link:hover, .agent-link:focus-visible { background: var(--hover); }
+.agent-link .go { color: var(--accent); }
+.agent-link .mini { color: inherit; }
+.w .mini { background: var(--w-bg); color: var(--w-fg); } .p .mini { background: var(--p-bg); color: var(--p-fg); } .m .mini { background: var(--m-bg); color: var(--m-fg); }
+.side-hint { color: var(--muted); }
+
+/* main */
+main { padding: 18px 20px; }
+.hero h2 { font-size: 1.05rem; font-weight: 700; }
+.hero p { color: var(--muted); font-size: 0.85rem; }
+.soon { border: 1px dashed var(--line); border-radius: 12px; background: var(--panel); }
+.soon .lbl { color: var(--muted); }
+.section-h { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+.section-h .count { color: var(--muted); }
+
+/* Command Center buttons */
+.btn { min-height: 36px; padding: 0.4rem 0.8rem; border-radius: 8px; border: 1px solid var(--line); background: var(--hover);
+  color: var(--text); font-size: 13.5px; font-weight: 600; }
+.btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.btn:focus-visible, .open:focus-visible, .chip:focus-visible, .card:focus-visible { outline: none; box-shadow: var(--focus); }
+.btn.primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+.btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.btn[disabled]:hover { border-color: var(--line); background: var(--hover); }
+.btn.stop-all { border-color: var(--danger); color: var(--danger); background: var(--panel); }
+.btn.stop-all:hover { background: var(--danger-soft); border-color: var(--danger); }
+.btn.stop-all.paused { border-color: var(--g1); color: var(--g1); }
+.btn.danger { background: var(--danger); border-color: var(--danger); color: #fff; }
+
+/* Command Center cards */
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
+.card:hover { border-color: var(--accent); transform: none; }
+.card.selected { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft), var(--shadow); }
+.card h3 { font-size: 0.95rem; }
+.card .role { color: var(--muted); font-size: 0.82rem; }
+.ico { color: inherit; font-weight: 700; border-radius: 10px; }
+.w .ico, .panel-head.w .ico, .igd-dh.w .ico { background: var(--w-bg); color: var(--w-fg); }
+.p .ico, .panel-head.p .ico, .igd-dh.p .ico { background: var(--p-bg); color: var(--p-fg); }
+.m .ico, .panel-head.m .ico, .igd-dh.m .ico { background: var(--m-bg); color: var(--m-fg); }
+.note-flag { color: var(--muted); } .note-flag.has { color: var(--text); }
+.open { color: var(--accent); border: 1px solid var(--line); background: var(--panel); border-radius: 8px; min-height: 32px; }
+.open:hover { background: var(--accent-soft); border-color: var(--accent); }
+.empty { color: var(--muted); }
+.sim-status { color: var(--muted); }
+.sim-status .tag, .sim-tag { border: 1px dashed var(--line); color: var(--muted); }
+.sim-status .sd { background: var(--g1); }
+.sim-status.idle .sd { background: var(--warn); } .sim-status.busy .sd { background: var(--accent); } .sim-status.paused .sd { background: var(--danger); }
+
+/* notes panel */
+section.panel { background: var(--panel2); border-left: 1px solid var(--line); }
+.panel-head { border-bottom: 1px solid var(--line); }
+.panel-head p, .box-h, .hint, .recent .none { color: var(--muted); }
+.chip { background: var(--panel); border: 1px solid var(--line); color: var(--text); font-weight: 600; }
+.chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.toast { background: #1a2332; border: 0; color: #fff; font-weight: 600; box-shadow: var(--shadow); }
+[data-theme="dark"] .toast { background: #e8edf5; color: #0f141c; }
+
+/* simulated chat / confirm dialogs */
+.igd-modal { background: rgba(15, 20, 28, 0.45); }
+.igd-dlg { background: var(--panel); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 12px; }
+.igd-dh, .igd-in { border-color: var(--line); }
+.igd-dh p { color: var(--muted); }
+.igd-x { border: 1px solid var(--line); color: var(--text); background: var(--panel); }
+.igd-note { color: var(--warn); background: var(--warn-soft); border-bottom: 1px solid var(--line); }
+.igd-m { background: var(--hover); border: 1px solid var(--line); color: var(--text); }
+.igd-m.me { background: var(--accent-soft); border-color: var(--accent); }
+.igd-m .meta { color: var(--muted); }
+.igd-cbody { color: var(--text); }
+::-webkit-scrollbar-thumb { background: var(--line); }
+
+/* narrower frames: drop the duplicate agent list, then stack everything (phone) */
+@media (max-width: 1100px) {
+  #igd-shell { grid-template-columns: minmax(0, 1fr) 300px; grid-template-areas: "top top" "main panel"; }
+  aside { display: none; }
+}
+@media (max-width: 700px) {
+  html, body { height: auto; }
+  body { display: block !important; overflow: auto !important; }
+  #igd-shell { display: block; }
+  header { height: auto; padding: 10px 12px; gap: 8px; flex-wrap: wrap; position: sticky; top: 0; z-index: 5; }
+  .search { flex: 1 1 100%; max-width: none; }
+  .search input { min-height: 44px; font-size: 16px; }
+  .top-right { margin-left: 0; }
+  main { overflow: visible; padding: 14px 12px; }
+  .hero { margin-bottom: 8px; }
+  .soon { padding: 10px; }
+  .btn, .open, .chip { min-height: 44px; }
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  section.panel { border-left: 0; border-top: 1px solid var(--line); }
+  .panel-body { overflow: visible; }
+  textarea#notes { min-height: 120px; font-size: 16px; }
+}

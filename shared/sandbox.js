@@ -5,8 +5,10 @@
    Optional attributes on the script tag:
      data-keys="pfx1,pfx2"       extra localStorage/sessionStorage key prefixes owned by this app
      data-caches="pfx1,pfx2"     extra Cache Storage name prefixes owned by this app
-     data-layout="flow|cc|none"  how the banner sits (default flow = in-flow first child of <body>, before the
-                                 app's own shell; cc = fixed bar that shifts the Command Center's --banner-h)
+     data-layout="flow|cc|none|embed"  how the banner sits (default flow = in-flow first child of <body>, before the
+                                 app's own shell; cc = fixed bar that shifts the Command Center's --banner-h;
+                                 embed = no banner: the page lives in an iframe inside another sandbox app that
+                                 already shows one. Opened on its own, it goes to data-embed-home instead)
      data-unlock-preset="key"    localStorage key the app's OWN passcode gate checks; set to the
                                  sandbox hash when the sandbox is unlocked (so there is only one gate)
    What it does: shared SANDBOX banner (Home / Reset this app / Reset everything), passcode gate
@@ -52,7 +54,13 @@
        the phone build is expected to use "igm_". Both apps can extend these with data-keys. */
     agents: { label: "Agent Platform phone", path: "/ihi-sandbox/agents/", prefixes: ["igm_", "igm-", "intelligro.mobile.", "intelligro-mobile"], caches: ["igm-", "intelligro-mobile", "agents-sandbox-"] },
     /* agents-desktop: keys "igd_*"; the app's own simulator reset (window.IGD_SIM.reset) is called when present */
-    "agents-desktop": { label: "Agent Platform desktop", path: "/ihi-sandbox/agents-desktop/", prefixes: ["igd_"], caches: ["igd-", "agents-desktop-sandbox-"], hook: "IGD_SIM" }
+    "agents-desktop": { label: "Agent Platform desktop", path: "/ihi-sandbox/agents-desktop/", prefixes: ["igd_"], caches: ["igd-", "agents-desktop-sandbox-"], hook: "IGD_SIM" },
+    /* IntelliGro.AI Home Base Command Center (make-home-base.sh): a copy of the Command Center sandbox with
+       its own storage ("ihb-*", renamed from "ihi-*" at build time) and caches, plus the Agent Platform nav item */
+    "home-base": { label: "IntelliGro.AI Home Base Command Center", path: "/ihi-sandbox/home-base/", prefixes: ["ihb-"], caches: ["ihb-"] },
+    /* the Agent Platform page framed inside Home Base: keys "ihb-agents-*" are under the home-base prefix,
+       so Home Base's "Reset this app" clears them too */
+    "home-base-agents": { label: "IntelliGro.AI Home Base Command Center", path: "/ihi-sandbox/home-base/agent-platform/", resetAs: "home-base", prefixes: [], caches: [] }
   };
   var reg = REGISTRY[APP] || { label: APP, path: BASE + "/" + APP + "/", prefixes: [APP + ":"], caches: [APP + "-"] };
   var split = function (s) { return s ? s.split(",").map(function (x) { return x.trim(); }).filter(Boolean) : []; };
@@ -74,6 +82,13 @@
     var target = window.top !== window ? null : location.pathname + location.search + location.hash;
     var dest = BASE + "/?next=" + encodeURIComponent(target || (BASE + "/"));
     try { (window.top !== window ? window.top : window).location.replace(target ? dest : BASE + "/"); } catch (e) { location.replace(dest); }
+    return;
+  }
+  /* embed layout opened on its own (not in a frame): show it inside its host app instead */
+  var LAYOUT = attr("data-layout") || "flow";
+  if (LAYOUT === "embed" && window.top === window) {
+    document.documentElement.style.visibility = "hidden";
+    location.replace(attr("data-embed-home") || "/");
     return;
   }
   /* one gate only: pre-satisfy the app's own demo gate with the sandbox hash */
@@ -303,7 +318,7 @@
 
   /* ---------------- banner ---------------- */
   function buildBanner() {
-    if (document.querySelector(".sb-banner")) return;
+    if (LAYOUT === "embed" || document.querySelector(".sb-banner")) return;   /* host app shows the banner */
     var b = document.createElement("div");
     b.className = "sb-banner"; b.setAttribute("role", "region"); b.setAttribute("aria-label", "Sandbox notice");
     var isHome = APP === "launcher";
