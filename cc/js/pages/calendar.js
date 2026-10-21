@@ -3,7 +3,7 @@
  * Design pass item 7: opens in an agenda List covering the 7-day strip's week (sticky day headers, ~72px rows),
  * swipeable 7-day strip with count dots + Today pill, List | Day toggle (Day = time grid, 64px per hour).
  * No week/month grid, no Confirm / Call / Text buttons, no edge swipes (they clash with Android back).
- * Data: window.SAMPLE_REP_APPTS only (js/data/rep-appts.js, keyed by rep id u-mark / u-drew). Clock: the shared
+ * Data: window.SAMPLE_REP_APPTS only (js/data/rep-appts.js, keyed by rep id u-mitch / u-dylan). Clock: the shared
  * sample clock (SampleReps.today / .now), the same "today" as the other phone pages. Access first; MarketSharp small + amber ≠.
  * Owned by v16 track 3. Sample data only. */
 (function () {

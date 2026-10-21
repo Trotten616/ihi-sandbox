@@ -1,5 +1,5 @@
 /* v16 phone (sales reps only) — SAMPLE sales-rep users + their assigned appointments.
- *   window.SAMPLE_REP_APPTS  = { "u-mark": [Appt, …], "u-drew": [Appt, …] }   ← keyed by rep user id, sorted by date+time
+ *   window.SAMPLE_REP_APPTS  = { "u-mitch": [Appt, …], "u-dylan": [Appt, …] }   ← keyed by rep user id, sorted by date+time
  *   window.SampleReps        = { users, today, now, results, list(repId), get(apptId), repFor(id), weekRange(), … }
  * Read by: Today + My Leads (track 2, js/pages/rep-leads.js), Calendar (track 3), My Activity (track 4).
  * Everything is fictional sample data (names, streets, 555-01xx phones). Deterministic: no Math.random, same data every load.
@@ -19,8 +19,8 @@
 
   /* Sales reps — names reused from the Sales sample salesperson list (SampleData.salesDaily). role "Rep" → IHIPages.roleKey = "rep". */
   const USERS = [
-    { id: "u-mark", name: "Mark Stone", email: "mark.stone@example.com", role: "Rep", roleLabel: "Sales rep", initials: "MS", officeDefault: "MI", rep: true, salesperson: "Mark Stone", salespersonId: "sp-mark" },
-    { id: "u-drew", name: "Drew Hale", email: "drew.hale@example.com", role: "Rep", roleLabel: "Sales rep", initials: "DH", officeDefault: "MI", rep: true, salesperson: "Drew Hale", salespersonId: "sp-drew" }
+    { id: "u-mitch", name: "Mitch Stockel", email: "mitch.stockel@example.com", role: "Rep", roleLabel: "Sales rep", initials: "MS", officeDefault: "MI", rep: true, salesperson: "Mitch Stockel", salespersonId: "sp-mitch" },
+    { id: "u-dylan", name: "Dylan Harmsen", email: "dylan.harmsen@example.com", role: "Rep", roleLabel: "Sales rep", initials: "DH", officeDefault: "MI", rep: true, salesperson: "Dylan Harmsen", salespersonId: "sp-dylan" }
   ];
 
   /* Result vocabulary on the phone (Access STATUS ↔ MarketSharp result). demo = Sold or Demo/No sale. */
@@ -54,11 +54,11 @@
     const days = [];
     for (let d = "2026-09-28"; d <= "2026-10-10"; d = addDays(d, 1)) {
       if (dow(d) === 0) continue;
-      const base = repId === "u-mark" ? 3 : 2;
-      let n = d === TODAY ? (repId === "u-mark" ? 4 : 3) : base + (u("n:" + repId + d) < 0.4 ? 1 : 0) - (dow(d) === 6 ? 1 : 0);
-      if (repId === "u-drew" && dow(d) === 3) n = 0; /* Drew's day off: Wednesdays */
+      const base = repId === "u-mitch" ? 3 : 2;
+      let n = d === TODAY ? (repId === "u-mitch" ? 4 : 3) : base + (u("n:" + repId + d) < 0.4 ? 1 : 0) - (dow(d) === 6 ? 1 : 0);
+      if (repId === "u-dylan" && dow(d) === 3) n = 0; /* Dylan's day off: Wednesdays */
       const slots = SLOTS.slice().sort((a, b) => u("s:" + repId + d + a) - u("s:" + repId + d + b)).slice(0, Math.max(0, n)).sort();
-      if (d === TODAY) days.push([d, repId === "u-mark" ? ["10:00", "14:00", "16:00", "18:00"] : ["12:00", "16:00", "18:00"]]);
+      if (d === TODAY) days.push([d, repId === "u-mitch" ? ["10:00", "14:00", "16:00", "18:00"] : ["12:00", "16:00", "18:00"]]);
       else if (slots.length) days.push([d, dow(d) === 6 ? slots.filter((s) => s <= "14:00").concat(slots.length && !slots.some((s) => s <= "14:00") ? ["12:00"] : []) : slots]);
     }
     return days;
@@ -94,7 +94,7 @@
         let accessConfirmed = false, msConfirmed = false, leftMessage = false;
         if (confDue) {
           if (cr < 0.7) { accessConfirmed = true; msConfirmed = u("cfm:" + k) > 0.18; }
-          if (k === "u-mark:2026-10-05:16:00") { accessConfirmed = true; msConfirmed = false; leftMessage = false; } /* keep one Access-only confirm on today's sample */
+          if (k === "u-mitch:2026-10-05:16:00") { accessConfirmed = true; msConfirmed = false; leftMessage = false; } /* keep one Access-only confirm on today's sample */
           else if (cr < 0.85) leftMessage = true;
         }
         let confirm;

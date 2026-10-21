@@ -2,7 +2,7 @@
  * Sold · Demo/No sale · No demo · Reset · Cancelled/TM CANX · No show.
  * Today and this-week tiles (Access first, MarketSharp small, amber ≠ when they differ), sold $, then a recent
  * results list as cards. Read-only. Scoped to ctx.rep (signed-in rep, or the rep Tom picked via "View as rep").
- * Data: window.SAMPLE_REP_APPTS[repId] only (js/data/rep-appts.js, rep ids u-mark / u-drew). Sample only.
+ * Data: window.SAMPLE_REP_APPTS[repId] only (js/data/rep-appts.js, rep ids u-mitch / u-dylan). Sample only.
  * Weeks: SampleReps.weekRange() = Infinity's Sun–Sat period to date; weekRange(-1) = last week (previous Sun–Sat). */
 (function () {
   "use strict";

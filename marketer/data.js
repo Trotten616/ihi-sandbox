@@ -1093,12 +1093,10 @@ var d={
   ]
  },
  "reps": [
-  "Jordan Pell",
-  "Avery Lindqvist",
-  "Marcus Duvall",
-  "Sienna Roark",
-  "Caleb Hartigan",
-  "Priya Mendel"
+  "Mitch Stockel",
+  "Danny Verbrugge",
+  "Dylan Harmsen",
+  "James Koster"
  ],
  "dispositions": [
   "No answer",

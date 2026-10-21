@@ -34,7 +34,7 @@
   function isRepUser(u) { return !!u && (u.rep === true || roleKey(u.role) === "salesrep" || (Array.isArray(u.roles) && u.roles.some(function (r) { return roleKey(r) === "salesrep"; }))); }
   function isManager(u) { return !!u && roleKey(u.role) === "manager"; }
   /* Sales reps for "View as rep": sample users with role "Sales rep"; until those exist, the active sample
-     salespeople (Mark, Derek, Drew, Jake) from SampleData.salesFilters/salespeople. */
+     salespeople (Mitch, Danny, Dylan, James) from SampleData.salesFilters/salespeople. */
   function salespeople() {
     var sd = window.SampleData || {}, list = sd.salespeople || (sd.salesFilters && sd.salesFilters.salespeople) || [];
     if (!list.length) { for (var k in sd) { if (sd[k] && Array.isArray(sd[k].salespeople)) { list = sd[k].salespeople; break; } } }
