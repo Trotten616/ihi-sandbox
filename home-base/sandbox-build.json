@@ -1,9 +1,9 @@
 {
   "app": "home-base",
   "label": "IntelliGro.AI Home Base Command Center",
-  "builtAt": "2026-10-21T16:53:42-04:00",
+  "builtAt": "2026-10-21T18:59:02-04:00",
   "source": "site/cc (archive:main) + site/agents-desktop + sample-agents.js",
-  "commit": "dce7b13",
+  "commit": "acb5817",
   "storageKeys": [
     "fb-board-v1",
     "ihb-act-v1:",
@@ -15,6 +15,7 @@
     "ihb-agents-selected",
     "ihb-agents-status",
     "ihb-command-office",
+    "ihb-command-sidebar-collapsed",
     "ihb-command-theme",
     "ihb-command-user",
     "ihb-gate-v16",

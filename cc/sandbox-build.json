@@ -1,15 +1,16 @@
 {
   "app": "cc",
   "label": "Infinity Home Improvement Command Center",
-  "builtAt": "2026-10-21T16:53:42-04:00",
+  "builtAt": "2026-10-21T18:59:02-04:00",
   "source": "archive:main",
-  "commit": "dce7b13",
+  "commit": "acb5817",
   "storageKeys": [
     "fb-board-v1",
     "ig-command-office",
     "ig-command-theme",
     "ihi-act-v1:",
     "ihi-command-office",
+    "ihi-command-sidebar-collapsed",
     "ihi-command-theme",
     "ihi-command-user",
     "ihi-gate-v16",

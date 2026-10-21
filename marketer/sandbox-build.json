@@ -1,15 +1,16 @@
 {
   "app": "marketer",
   "label": "Marketer (Chris Baareman) - Command Center look",
-  "builtAt": "2026-10-21T16:53:42-04:00",
+  "builtAt": "2026-10-21T18:59:02-04:00",
   "source": "site/cc (archive:main)",
-  "commit": "dce7b13",
+  "commit": "acb5817",
   "storageKeys": [
     "fb-board-v1",
     "jobs-board-v1",
     "jobs-files-v1",
     "mkc-act-v1:",
     "mkc-command-office",
+    "mkc-command-sidebar-collapsed",
     "mkc-command-theme",
     "mkc-command-user",
     "mkc-gate-v16",

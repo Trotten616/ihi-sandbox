@@ -19,9 +19,9 @@
   <link rel="stylesheet" href="css/mobile-reports-activity.css?v=16" />
 
   <!-- SANDBOX-OVERLAY:BEGIN (added by /workspace/sandbox/make-cc-sandbox.sh; not in the source repo) -->
-  <link rel="manifest" href="manifest.webmanifest?sb=20261021165342" />
-  <link rel="stylesheet" href="/ihi-sandbox/shared/sandbox.css?b=20261021165342" />
-  <script src="/ihi-sandbox/shared/sandbox.js?b=20261021165342" data-app="marketer" data-layout="cc" data-unlock-preset="mkc-gate-v16"></script>
+  <link rel="manifest" href="manifest.webmanifest?sb=20261021185902" />
+  <link rel="stylesheet" href="/ihi-sandbox/shared/sandbox.css?b=20261021185902" />
+  <script src="/ihi-sandbox/shared/sandbox.js?b=20261021185902" data-app="marketer" data-layout="cc" data-unlock-preset="mkc-gate-v16"></script>
   <!-- SANDBOX-OVERLAY:END -->
   <link rel="stylesheet" href="css/marketer-extra.css?v=16" />
 </head>
@@ -100,13 +100,15 @@
   <section id="screen-app" class="screen" aria-label="Application">
     <aside class="sidebar" aria-label="Main navigation">
       <div class="sidebar-brand">
+        <button type="button" class="sidebar-collapse-btn" id="sidebar-collapse" aria-expanded="true" aria-controls="main-nav" aria-label="Collapse menu" title="Collapse menu"><span aria-hidden="true">«</span></button>
         <img class="brand-logo brand-logo-sidebar" src="assets/infinity-logo.png?v=16" width="160" height="40" alt="Infinity Home Improvement" />
+        <img class="brand-mark-sidebar" src="assets/icons/icon-96.png" width="32" height="32" alt="Infinity Home Improvement" />
         <div>
           <strong>Infinity Home Improvement Command Center</strong>
           <span>Design draft</span>
         </div>
       </div>
-      <nav class="nav">
+      <nav class="nav" id="main-nav">
         <button type="button" class="nav-btn active" data-view="home"><span class="nav-icon" aria-hidden="true">⌂</span> Home</button>
         <button type="button" class="nav-btn" data-view="leads"><span class="nav-icon" aria-hidden="true">☰</span> Leads</button>
         <button type="button" class="nav-btn" data-view="appointments"><span class="nav-icon" aria-hidden="true">▦</span> Appointments</button>

@@ -194,7 +194,15 @@
       (need.length ? ' <span class="fb-need">Needs a rep: ' + need.map(function (a) { return '<button type="button" class="fb-mini" data-fb-appt-open="' + a.id + '">' + esc(cellText(a)) + "</button>"; }).join(" ") + "</span>" : "") + "</div>";
     return head + C().slots.map(function (t) { return '<div class="board-cell time">' + slotLabel(t) + "</div>" + reps.map(function (r) { return cellHtml(date, t, r); }).join(""); }).join("");
   }
-  function repHeads(reps) { return '<div class="board-cell head">Time</div>' + reps.map(function (r) { return '<div class="board-cell head board-rep-head" data-rep-head="' + r.id + '"><div class="rep-name">' + esc(r.name) + '</div><span class="rep-city">' + esc(r.office) + " · 🏠 " + esc(r.home) + "</span></div>"; }).join(""); }
+  function repHeads(reps) { return '<div class="board-cell head">Time</div>' + reps.map(function (r) { return '<div class="board-cell head board-rep-head" data-rep-head="' + r.id + '"><div class="rep-name">' + esc(r.name) + '</div><span class="rep-city">' + esc(r.office) + " · 🏠 " + esc(r.home) + "</span>" + repProducts(r) + "</div>"; }).join(""); }
+  /* Generic: lists every tenant product; check = rep sells it, X = doesn't. Data comes only from config. */
+  var rpSeq = 0;
+  function repProducts(r) {
+    var ps = C().products || []; if (!ps.length) return "";
+    var id = "fb-rp-" + r.id + "-" + (++rpSeq), n = ps.filter(function (p) { return sells(r, p.code); }).length;
+    return '<button type="button" class="fb-rp-toggle" data-fb-rp="' + r.id + '" aria-expanded="false" aria-controls="' + id + '" aria-label="Products ' + esc(r.name) + ' sells (' + n + ' of ' + ps.length + ')">Products ' + n + "/" + ps.length + ' <span aria-hidden="true">\u25BE</span></button>' +
+      '<ul class="fb-rp-list" id="' + id + '" hidden>' + ps.map(function (p) { var y = sells(r, p.code); return '<li class="' + (y ? "yes" : "no") + '" data-code="' + esc(p.code) + '"><span class="fb-rp-mark" aria-hidden="true">' + (y ? "\u2714" : "\u2718") + "</span>" + esc(p.label) + '<span class="fb-sr"> \u2014 ' + (y ? "sells" : "does not sell") + "</span></li>"; }).join("") + "</ul>";
+  }
   function weekHtml(ws) {
     var reps = repsInWeek(ws), days = [];
     for (var i = 0; i < 7; i++) days.push(addDays(ws, i));
@@ -266,6 +274,7 @@
   }
   function bindCells() {
     var R = ui.root;
+    R.querySelectorAll("[data-fb-rp]").forEach(function (b) { b.onclick = function (e) { e.stopPropagation(); var open = b.getAttribute("aria-expanded") !== "true", l = document.getElementById(b.getAttribute("aria-controls")); b.setAttribute("aria-expanded", open ? "true" : "false"); if (l) l.hidden = !open; }; });
     R.querySelectorAll("[data-fb-book]").forEach(function (b) { b.onclick = function () { var c = b.closest(".fb-cell"); bookDialog({ date: c.dataset.date, time: c.dataset.time, repId: c.dataset.rep }); }; });
     R.querySelectorAll("[data-fb-appt]").forEach(function (el) {
       el.onclick = function () { cellMenu(el.getAttribute("data-fb-appt")); };

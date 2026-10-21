@@ -788,8 +788,50 @@
     if (f.appointmentType !== "all") rows = rows.filter((a) => a.appointmentType === f.appointmentType);
     if (f.appointmentResult !== "all") rows = rows.filter((a) => a.result === f.appointmentResult);
     if (f.division !== "all") rows = rows.filter((a) => a.division === f.division);
-    /* dateRange "today" is the sample dataset itself */
+    /* "today" / "tomorrow" = appointment date equals the page date / the next calendar day; other ranges show the sample set */
+    const rg = salesRange();
+    if (rg) rows = rows.filter((a) => { const d = String(a.apptDate || "").slice(0, 10); return d >= rg[0] && d <= rg[1]; });
     return rows;
+  }
+  function salesNextDay(iso) { const d = new Date(iso + "T00:00:00Z"); d.setUTCDate(d.getUTCDate() + 1); return d.toISOString().slice(0, 10); }
+  /* [from, to] inclusive ISO dates for the selected date range, or null = whole sample set */
+  function salesRange() {
+    const base = (SampleData.salesDay || {}).date, f = state.salesFilters, r = f.dateRange;
+    if (!base) return null;
+    if (r === "today") return [base, base];
+    if (r === "tomorrow") { const t = salesNextDay(base); return [t, t]; }
+    if (r === "custom") {
+      let a = f.customFrom || base, b = f.customTo || a;
+      if (b < a) { const x = a; a = b; b = x; state.salesRangeSwapped = true; f.customFrom = a; f.customTo = b; }
+      return [a, b];
+    }
+    return null;
+  }
+  const SALES_MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  function salesDateDisplay() {
+    const day = SampleData.salesDay || {}, rg = salesRange();
+    if (!rg || (rg[0] === day.date && rg[1] === day.date)) return day.dateDisplay || "Today";
+    const D = (iso) => new Date(iso + "T00:00:00Z"), a = D(rg[0]), b = D(rg[1]);
+    if (rg[0] === rg[1]) return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][a.getUTCDay()] + " " + SALES_MON[a.getUTCMonth()] + " " + a.getUTCDate() + ", " + a.getUTCFullYear();
+    const md = (d) => SALES_MON[d.getUTCMonth()] + " " + d.getUTCDate();
+    return a.getUTCFullYear() === b.getUTCFullYear() ? md(a) + " – " + md(b) + ", " + b.getUTCFullYear() : md(a) + ", " + a.getUTCFullYear() + " – " + md(b) + ", " + b.getUTCFullYear();
+  }
+
+  /* per-rep summary computed from the filtered rows (used for days without a stored rollup) */
+  function salesRollupsFrom(rows) {
+    const by = new Map();
+    rows.forEach((a) => {
+      const r = by.get(a.salesperson) || { salesperson: a.salesperson, issued: 0, demos: 0, sold: 0, noShow: 0, cancelled: 0, issues: 0, state: a.state };
+      const res = String(a.result || "").toLowerCase();
+      if (a.issued) r.issued++;
+      if (res.includes("demo")) r.demos++;
+      if (res.includes("sold")) r.sold++;
+      if (res.includes("no show")) r.noShow++;
+      if (res.includes("cancel") || res.includes("canx")) r.cancelled++;
+      if (res.includes("not issued")) r.issues++;
+      by.set(a.salesperson, r);
+    });
+    return [...by.values()];
   }
 
   function renderSales() {
@@ -797,7 +839,7 @@
     const f = state.salesFilters;
     const rows = filterSalesAppointments();
     const people = (day.salespeople || []).filter((p) => !f.hideInactive || p.active);
-    const rollups = (day.repRollups || []).filter((r) => r.state === state.office);
+    const rollups = (f.dateRange === "tomorrow" || f.dateRange === "custom") ? salesRollupsFrom(rows) : (day.repRollups || []).filter((r) => r.state === state.office);
     const tagged = rows.filter((a) => a.tagged).length;
     state.salesTaggedCount = tagged;
 
@@ -824,7 +866,7 @@
       <div class="card card-pad sales-scoreboard">
         <div class="section-head" style="margin-bottom:0.65rem;">
           <div>
-            <h2>Rep day summary · ${day.dateDisplay || "Today"}</h2>
+            <h2>Rep day summary · ${salesDateDisplay()}</h2>
             <p>Issued, demos, sold, no-shows, cancels, and issues for ${state.office === "IL" ? "Illinois" : "Michigan"} (sample).</p>
           </div>
         </div>
@@ -874,14 +916,25 @@
             <span>&nbsp;</span>
             <label class="check-inline"><input type="checkbox" id="sales-hide-inactive" ${f.hideInactive ? "checked" : ""} /> Hide inactive salespeople</label>
           </label>
-          <label class="sales-field">
+          <label class="sales-field sales-field-date">
             <span>Date range</span>
             <select class="select" id="sales-filter-date" aria-label="Date range">
               <option value="today">Today’s Appointments</option>
+              <option value="tomorrow">Tomorrow’s Appointments</option>
               <option value="yesterday">Yesterday</option>
               <option value="week">This week</option>
+              <option value="custom">Custom range…</option>
             </select>
           </label>
+          ${f.dateRange === "custom" ? (() => { const rg = salesRange(); return `
+          <div class="sales-field sales-custom-range" id="sales-custom-range">
+            <span>From – To</span>
+            <div class="sales-range-inputs">
+              <input type="date" class="select" id="sales-range-from" aria-label="From date" value="${rg[0]}" />
+              <input type="date" class="select" id="sales-range-to" aria-label="To date" value="${rg[1]}" />
+            </div>
+            ${state.salesRangeSwapped ? `<small class="sales-range-msg" role="status">To was before From — dates swapped.</small>` : ""}
+          </div>`; })() : ""}
           <label class="sales-field">
             <span>Appointment type</span>
             <select class="select" id="sales-filter-type" aria-label="Appointment type">${typeOpts}</select>
@@ -912,7 +965,7 @@
 
     const toolbar = `
       <div class="sales-toolbar">
-        <span class="sales-count"><strong>${rows.length}</strong> Sales Appointments · ${day.dateDisplay || "Today"} · ${state.office === "IL" ? "Illinois" : "Michigan"}</span>
+        <span class="sales-count"><strong>${rows.length}</strong> Sales Appointments · ${salesDateDisplay()} · ${state.office === "IL" ? "Illinois" : "Michigan"}</span>
         <div class="sales-toolbar-right">
           <label class="sales-display">Display
             <select class="select" aria-label="Page size" disabled>
@@ -997,6 +1050,8 @@
     bind("#sales-filter-view", "view");
     bind("#sales-filter-sp", "salesperson");
     bind("#sales-filter-date", "dateRange");
+    if (f.dateRange !== "custom") state.salesRangeSwapped = false;
+    ["#sales-range-from", "#sales-range-to"].forEach((id, i) => { const el = $(id); if (el) el.addEventListener("change", (e) => { if (!e.target.value) return; state.salesRangeSwapped = false; state.salesFilters[i ? "customTo" : "customFrom"] = e.target.value; renderSales(); }); });
     bind("#sales-filter-type", "appointmentType");
     bind("#sales-filter-result", "appointmentResult");
     bind("#sales-filter-div", "division");
@@ -1721,6 +1776,25 @@
         closeReportModal();
       }
     });
+
+    /* Desktop: collapsible sidebar (icon rail), remembered per browser */
+    const STORAGE_SIDEBAR = "ihb-command-sidebar-collapsed";
+    const colBtn = $("#sidebar-collapse");
+    document.querySelectorAll(".sidebar .nav-btn").forEach((b) => {
+      const label = b.textContent.replace(/\s+/g, " ").trim().replace(/^\S+\s/, "");
+      b.dataset.label = label;
+      if (!b.getAttribute("aria-label")) b.setAttribute("aria-label", label);
+      if (!b.title) b.title = label;
+    });
+    const setCollapsed = (c) => {
+      $("#screen-app").classList.toggle("sidebar-collapsed", c);
+      if (colBtn) { colBtn.setAttribute("aria-expanded", c ? "false" : "true"); colBtn.setAttribute("aria-label", c ? "Expand menu" : "Collapse menu"); colBtn.title = c ? "Expand menu" : "Collapse menu"; colBtn.firstElementChild.textContent = c ? "»" : "«"; }
+      try { localStorage.setItem(STORAGE_SIDEBAR, c ? "1" : "0"); } catch (e) { /* storage blocked */ }
+    };
+    let startCollapsed = false;
+    try { startCollapsed = localStorage.getItem(STORAGE_SIDEBAR) === "1"; } catch (e) { /* storage blocked */ }
+    setCollapsed(startCollapsed);
+    if (colBtn) colBtn.addEventListener("click", () => setCollapsed(!$("#screen-app").classList.contains("sidebar-collapsed")));
 
     const menuBtn = $("#menu-toggle");
     if (menuBtn) {
