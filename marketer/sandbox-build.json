@@ -1,9 +1,9 @@
 {
   "app": "marketer",
   "label": "Marketer (Chris Baareman) - Command Center look",
-  "builtAt": "2026-10-21T12:02:18-04:00",
+  "builtAt": "2026-10-21T13:29:40-04:00",
   "source": "site/cc (archive:main)",
-  "commit": "55ac528",
+  "commit": "8e7df4b",
   "storageKeys": [
     "fb-board-v1",
     "mkc-act-v1:",

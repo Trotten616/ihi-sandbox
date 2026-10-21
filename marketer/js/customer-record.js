@@ -1,7 +1,7 @@
 /* Customer record (v14) — profile drawer laid out like a CRM contact record, per Thomas (2026-10-05):
  * header (initials, LAST, FIRST, address, map links, marketing queue, tags) + right-side Phone & Fax / Email & Internet cards,
- * then a tab strip: Lead Info · Activities · Attachments · Add'l Contacts · Notes · Custom Fields · Inquiries & Appointments ·
- * Quotes · Jobs (only with sales data). Dense tables. Original Command Center code, styling and icons (no third-party logo,
+ * then a tab strip: Customer Details · To Do List · Files & Photos · Notes · Extra Details · Leads & Appointments · Estimates (Thomas 2026-10-21) ·
+ * Jobs (only with sales data). Dense tables. Original Command Center code, styling and icons (no third-party logo,
  * artwork or code). Every edit / add / delete / send is sample-only (toast). Data: DashboardData.getCustomerRecord(). */
 (function () {
   "use strict";
@@ -22,8 +22,8 @@
     cal: `<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M2 3h12v11H2zM2 6h12M5 1.5v3M11 1.5v3" stroke="currentColor" fill="none" stroke-width="1.4"/></svg>`
   };
   const TABS = [
-    { id: "info", label: "Leads/Appts" }, { id: "acts", label: "Activities" }, { id: "att", label: "Attachments" }, { id: "contacts", label: "Mail/Contacts" },
-    { id: "notes", label: "Notes" }, { id: "custom", label: "Custom Fields" }, { id: "inq", label: "Inquiries & Appointments" }, { id: "quotes", label: "Quotes" }, { id: "jobs", label: "Jobs" }
+    { id: "info", label: "Customer Details" }, { id: "acts", label: "To Do List" }, { id: "att", label: "Files & Photos" },
+    { id: "notes", label: "Notes" }, { id: "custom", label: "Extra Details" }, { id: "inq", label: "Leads & Appointments" }, { id: "quotes", label: "Estimates" }, { id: "jobs", label: "Jobs" }
   ];
   const ui = { tab: "inq", actStatus: "all" };
   let current = null;
@@ -74,7 +74,7 @@
   }
 
   function tabInfo(r) {
-    return `<div class="cr-toolbar">${sampleBtn("Edit Lead Info", "Edit Lead Info", "primary")}</div>${grid(r.leadInfo)}
+    return `<div class="cr-toolbar">${sampleBtn("Edit Customer Details", "Edit Customer Details", "primary")}</div>${grid(r.leadInfo)}
       ${r.older ? `<p class="cr-foot">Older shared sample record — fewer details than the generated customers.</p>` : ""}`;
   }
 
@@ -100,7 +100,7 @@
           <td>${esc(a.reference || "")}</td>
           <td>${resultChip(a.result)}${a.opened != null && a.type === "Text Out" ? ` <span class="cr-sub">${a.opened ? "opened " + esc(t12(a.openedAt)) : "not opened"}</span>` : ""}</td>
           <td>${a.text ? `<span class="cr-noteic" title="${esc(a.text)}">${ICON.note}</span>` : ""}</td>
-        </tr>`).join("")}</tbody></table></div>` : empty("No activities", ui.actStatus === "all" ? "Nothing logged on this customer yet." : "Nothing matches this status.")}
+        </tr>`).join("")}</tbody></table></div>` : empty("Nothing on the to do list", ui.actStatus === "all" ? "Nothing logged on this customer yet." : "Nothing matches this status.")}
       <p class="cr-foot">MarketSharp Activities (Assigned To = assignToEmployeeId). Texts come from the conversation (Hatch texts under Tom’s login are flagged, not credited to Tom). Hatch: open times TBD until API confirmed.</p>`;
   }
 
@@ -108,7 +108,7 @@
     return `<div class="cr-toolbar">${sampleBtn("Add Attachment", "Add Attachment", "primary")}</div>
       ${r.attachments.length ? `<div class="cr-table-wrap"><table class="cr-table"><thead><tr><th>Name</th><th>Type</th><th>Added</th><th>Added by</th><th>Size</th><th></th></tr></thead>
       <tbody>${r.attachments.map((a) => `<tr><td><button type="button" class="cr-link" data-cr-sample="Open ${esc(a.name)}">${esc(a.name)}</button></td><td>${esc(a.kind)}</td><td>${esc(mdY(a.added))}</td><td>${esc(a.by)}</td><td>${esc(a.size)}</td><td class="cr-actions">${iconBtn("trash", "Delete attachment", "Delete")}</td></tr>`).join("")}</tbody></table></div>`
-      : empty("No attachments", "Contracts, measure sheets and photos show here once a job is sold.")}`;
+      : empty("No files or photos", "Contracts, measure sheets and photos show here once a job is sold.")}`;
   }
 
   function tabContacts(r) {
@@ -133,8 +133,8 @@
   }
 
   function tabCustom(r) {
-    return `<div class="cr-toolbar">${sampleBtn("Edit Custom Fields", "Edit Custom Fields", "primary")}</div>
-      ${r.customFields.length ? grid(r.customFields) : empty("No custom fields", "Office-defined fields (home age, financing, best time…) show here.")}`;
+    return `<div class="cr-toolbar">${sampleBtn("Edit Extra Details", "Edit Extra Details", "primary")}</div>
+      ${r.customFields.length ? grid(r.customFields) : empty("No extra details", "Office-defined fields (home age, financing, best time…) show here.")}`;
   }
 
   function apptRows(list, r) {
@@ -144,7 +144,7 @@
       <td>${esc(a.salesperson)}${a.salespersonTip ? " " + tip(a.salespersonTip) : ""}</td>
       <td>${esc(a.result)}${a.mismatch && a.mismatch.kind === "confirm" ? ` <span class="cr-mis" title="${esc("Access WHOCONFIRM is filled for this visit but MarketSharp has no completed Confirm Appointment activity. Access counts as confirmed (Thomas, 2026-10-05).")}">${badge(a.resultSystem === "MarketSharp" ? (r.accSys || "Michigan Access") : a.resultSystem)} confirmed · not in MarketSharp</span>` : a.mismatch ? ` ${badge(a.resultSystem)} <span class="cr-mis" title="${esc("Access: " + a.mismatch.access + " · MarketSharp: " + a.mismatch.ms + ". Access is shown first (Thomas, 2026-10-05).")}">≠ MarketSharp: ${esc(a.mismatch.ms)}</span>` : ""}</td>
       <td>${esc(a.resultReason || "")}</td>
-      <td class="cr-links">${["Edit", "Proposals", "Quotes", "Delete"].map((x) => `<button type="button" class="cr-link" data-cr-sample="${x} appointment">${x}</button>`).join("")}</td></tr>`).join("");
+      <td class="cr-links">${["Edit", "Proposals", "Estimates", "Delete"].map((x) => `<button type="button" class="cr-link" data-cr-sample="${x} appointment">${x}</button>`).join("")}</td></tr>`).join("");
   }
 
   function tabInq(r) {
@@ -175,7 +175,7 @@
     return `<div class="cr-toolbar">${sampleBtn("Add Quote", "Add Quote", "primary")}</div>
       ${r.quotes.length ? `<div class="cr-table-wrap"><table class="cr-table"><thead><tr><th>Quote #</th><th>Date</th><th>Product</th><th>Salesperson</th><th>Amount</th><th>Status</th><th></th></tr></thead>
       <tbody>${r.quotes.map((x) => `<tr><td><b>${esc(x.number)}</b></td><td>${esc(mdY(x.date))}</td><td>${esc(x.product)}</td><td>${esc(x.salesperson)}</td><td>${esc(money(x.amount))}</td><td>${esc(x.status)}</td><td class="cr-links"><button type="button" class="cr-link" data-cr-sample="Open quote">Open</button></td></tr>`).join("")}</tbody></table></div>`
-      : empty("No quotes", "A quote shows here after the rep prices the job at the visit.")}`;
+      : empty("No estimates", "A quote shows here after the rep prices the job at the visit.")}`;
   }
 
   function tabJobs(r) {

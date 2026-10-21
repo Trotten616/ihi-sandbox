@@ -7,7 +7,7 @@ FutureBoardConfig.define({
     { code: "WIN", label: "Windows" }, { code: "SID", label: "Siding" }, { code: "RF", label: "Roofing", aliases: ["ROOF"] },
     { code: "GTR", label: "Gutters" }, { code: "TUB", label: "Tub / Bath" }, { code: "INS", label: "Insulation" },
     { code: "DK", label: "Deck" }, { code: "SRM", label: "Sunroom" }, { code: "S DR", label: "Sliding Door / Slider Door" },
-    { code: "AWNING", label: "Awning" }, { code: "RHASH", label: "Rehash (different rep than the original demo)" }, { code: "GH", label: "GH" }
+    { code: "AWNING", label: "Awning" }, { code: "RHASH", label: "Rehash (different rep than the original demo)" }, { code: "GH", label: "Gutter Helmet" }
   ],
   reps: [
     { id: "r1", name: "Mitch Stockel",    office: "KZO", home: "Caledonia",    skills: ["WIN", "SID", "RF", "INS", "GTR", "RHASH"], offDays: [0] },
