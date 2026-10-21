@@ -2880,7 +2880,7 @@ p.pl-sub { display: block; }
 .board-week-label { font-size: 0.95rem; }
 .board-week-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; max-height: 75vh; overflow-y: auto; }
 .board-week-grid .board-cell.head { position: sticky; top: 0; z-index: 2; }
-.board-cell.week-day-head { background: var(--fb-day-next, #1e3a5f); color: #fff; font-size: 0.9rem; padding: 0.45rem 0.6rem; position: sticky; left: 0; }
+.board-cell.week-day-head { background: #1e3a5f; color: #fff; font-size: 0.9rem; padding: 0.45rem 0.6rem; position: sticky; left: 0; }
 .board-cell.week-day-head .week-age { font-size: 0.72rem; opacity: 0.85; margin-left: 0.4rem; }
 .board-cell.week-empty { color: var(--text-muted, #64748b); font-size: 0.82rem; font-style: italic; padding: 0.5rem 0.6rem; }
 
@@ -2924,3 +2924,4 @@ p.pl-sub { display: block; }
 .fb-map { width: 100%; max-width: 360px; height: auto; background: #f1f5f9; border-radius: 8px; display: block; }
 .fb-toast { position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%); background: #111827; color: #fff; padding: .6rem 1rem; border-radius: 8px; opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 10000; }
 .fb-toast.show { opacity: 1; } .fb-toast.bad { background: #b91c1c; }
+.fb-day-head { background: #1e3a5f !important; color: #fff; }

@@ -230,7 +230,7 @@
     else { var reps = repsOn(ui.day); html += '<section class="fb-week fb-single" data-day="' + ui.day + '"><div class="board-grid fb-grid" role="grid" aria-label="Future Board ' + ui.day + '" style="grid-template-columns:52px repeat(' + reps.length + ', minmax(128px,1fr));">' + repHeads(reps) + dayHtml(ui.day, reps) + "</div></section>"; }
     html += "</div><p class=\"fb-foot\">Sunday–Saturday period weeks generate themselves from the rep schedule; no board to create. Sample Homeowner customers and 555 numbers only.</p>";
     ui.root.innerHTML = html; setLabel(); bind();
-    if (ui.view === "week") { var sc = ui.root.querySelector("#fb-scroll"), tgt = ui.root.querySelector('[data-week="' + ui.anchor + '"]'); if (sc && tgt) sc.scrollTop = tgt.offsetTop - sc.offsetTop; if (opts.focusDate) scrollToDate(opts.focusDate); observe(); }
+    if (ui.view === "week") { var sc = ui.root.querySelector("#fb-scroll"), tgt = ui.root.querySelector('[data-week="' + ui.anchor + '"]'); if (sc && tgt) sc.scrollTop += tgt.getBoundingClientRect().top - sc.getBoundingClientRect().top; if (opts.focusDate) scrollToDate(opts.focusDate); else if (ui.anchor === weekStart(todayISO())) scrollToDate(todayISO()); setTimeout(observe, 50); }
   }
   function setLabel() { var l = ui.root && ui.root.querySelector("#fb-label"); if (!l) return; l.textContent = ui.view === "day" ? DAYN[dow(ui.day)] + " " + fmtMD(ui.day) + "/" + D(ui.day).getUTCFullYear() : "Week of " + fmtMD(ui.anchor) + " – " + fmtMD(addDays(ui.anchor, 6)) + "/" + D(addDays(ui.anchor, 6)).getUTCFullYear(); }
   function addWeek(dir) {
@@ -246,11 +246,11 @@
     ui.root.querySelectorAll("[data-fb-more]").forEach(function (s) { io.observe(s); });
     sc.addEventListener("scroll", trackAnchor, { passive: true });
   }
-  function trackAnchor() { var sc = ui.root.querySelector("#fb-scroll"); if (!sc) return; var top = sc.scrollTop + sc.offsetTop + 40, cur = ui.anchor; ui.root.querySelectorAll(".fb-week[data-week]").forEach(function (s) { if (s.offsetTop <= top) cur = s.getAttribute("data-week"); }); if (cur !== ui.anchor) { ui.anchor = cur; setLabel(); var j = ui.root.querySelector("#fb-jump"); if (j) j.value = cur; } }
+  function trackAnchor() { var sc = ui.root.querySelector("#fb-scroll"); if (!sc) return; var top = sc.getBoundingClientRect().top + 60, cur = ui.anchor; ui.root.querySelectorAll(".fb-week[data-week]").forEach(function (s) { if (s.getBoundingClientRect().top <= top) cur = s.getAttribute("data-week"); }); if (cur !== ui.anchor) { ui.anchor = cur; setLabel(); var j = ui.root.querySelector("#fb-jump"); if (j) j.value = cur; } }
   function scrollToDate(date) {
     var sc = ui.root.querySelector("#fb-scroll"), ws = weekStart(date);
     if (ui.weeks.indexOf(ws) < 0) { ui.anchor = ws; render(ui.root, { focusDate: date === ws ? null : date }); return; }
-    var el = ui.root.querySelector("#fb-day-" + date) || ui.root.querySelector('[data-week="' + ws + '"]'); if (sc && el) sc.scrollTop = (el.closest(".fb-week").offsetTop - sc.offsetTop) + (el.classList.contains("fb-day-head") ? el.offsetTop - 8 : 0);
+    var el = ui.root.querySelector("#fb-day-" + date) || ui.root.querySelector('[data-week="' + ws + '"]'); if (sc && el) sc.scrollTop += el.getBoundingClientRect().top - sc.getBoundingClientRect().top - (el.classList.contains("fb-day-head") ? 56 : 0);
     ui.anchor = ws; setLabel();
   }
   function rerender() { if (!ui.root || !document.body.contains(ui.root)) return; var sc = ui.root.querySelector("#fb-scroll"), st = sc ? sc.scrollTop : 0, sl = sc ? sc.scrollLeft : 0; if (ui.view === "week") { var box = ui.root.querySelector("#fb-weeks"); box.innerHTML = ui.weeks.map(weekHtml).join(""); bindCells(); } else render(); sc = ui.root.querySelector("#fb-scroll"); if (sc) { sc.scrollTop = st; sc.scrollLeft = sl; } }
