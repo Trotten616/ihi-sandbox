@@ -1,9 +1,9 @@
 {
   "app": "home-base",
   "label": "IntelliGro.AI Home Base Command Center",
-  "builtAt": "2026-10-21T13:29:40-04:00",
+  "builtAt": "2026-10-21T16:53:42-04:00",
   "source": "site/cc (archive:main) + site/agents-desktop + sample-agents.js",
-  "commit": "8e7df4b",
+  "commit": "dce7b13",
   "storageKeys": [
     "fb-board-v1",
     "ihb-act-v1:",
@@ -24,7 +24,9 @@
     "ihb-phone-rep:",
     "ihb-sample-v1:",
     "ihb-txt-v3:",
-    "ihb-view-as-rep"
+    "ihb-view-as-rep",
+    "jobs-board-v1",
+    "jobs-files-v1"
   ],
   "gateKeys": [
     "ihb-gate-v16"

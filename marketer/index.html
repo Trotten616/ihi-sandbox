@@ -19,9 +19,9 @@
   <link rel="stylesheet" href="css/mobile-reports-activity.css?v=16" />
 
   <!-- SANDBOX-OVERLAY:BEGIN (added by /workspace/sandbox/make-cc-sandbox.sh; not in the source repo) -->
-  <link rel="manifest" href="manifest.webmanifest?sb=20261021132940" />
-  <link rel="stylesheet" href="/ihi-sandbox/shared/sandbox.css?b=20261021132940" />
-  <script src="/ihi-sandbox/shared/sandbox.js?b=20261021132940" data-app="marketer" data-layout="cc" data-unlock-preset="mkc-gate-v16"></script>
+  <link rel="manifest" href="manifest.webmanifest?sb=20261021165342" />
+  <link rel="stylesheet" href="/ihi-sandbox/shared/sandbox.css?b=20261021165342" />
+  <script src="/ihi-sandbox/shared/sandbox.js?b=20261021165342" data-app="marketer" data-layout="cc" data-unlock-preset="mkc-gate-v16"></script>
   <!-- SANDBOX-OVERLAY:END -->
   <link rel="stylesheet" href="css/marketer-extra.css?v=16" />
 </head>
@@ -111,6 +111,7 @@
         <button type="button" class="nav-btn" data-view="leads"><span class="nav-icon" aria-hidden="true">☰</span> Leads</button>
         <button type="button" class="nav-btn" data-view="appointments"><span class="nav-icon" aria-hidden="true">▦</span> Appointments</button>
         <button type="button" class="nav-btn" data-view="sales"><span class="nav-icon" aria-hidden="true">$</span> Sales</button>
+        <button type="button" class="nav-btn" data-view="jobs"><span class="nav-icon" aria-hidden="true">🚚</span> Jobs Board</button>
         <button type="button" class="nav-btn" data-view="activity" title="Activity: calls, texts, emails and to-dos tied to your leads, with due dates and results."><span class="nav-icon" aria-hidden="true">✓</span> Activity</button>
         <button type="button" class="nav-btn" data-view="messages"><span class="nav-icon" aria-hidden="true">💬</span> Messages</button>
         <button type="button" class="nav-btn" data-view="speed"><span class="nav-icon" aria-hidden="true">⚡</span> Speed to Lead</button>
@@ -221,6 +222,10 @@
         <div id="speed-root"></div>
       </div>
 
+      <div id="view-jobs" class="view">
+        <div id="jobs-root"></div>
+      </div>
+
       <div id="view-reports" class="view">
         <div id="reports-root"></div>
       </div>
@@ -299,6 +304,9 @@
   <script src="js/board/board-template.js?v=17"></script>
   <script src="js/board/board-tenant-infinity.js?v=17"></script>
   <script src="js/board/future-board.js?v=17"></script>
+  <script src="js/jobs/jobs-template.js?v=18"></script>
+  <script src="js/jobs/jobs-tenant-infinity.js?v=18"></script>
+  <script src="js/jobs/jobs-access.js?v=19"></script>
   <script src="js/access-reports.js?v=16"></script>
   <script src="js/integrations.js?v=16"></script>
   <script src="js/data/metrics.js?v=16"></script>

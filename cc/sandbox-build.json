@@ -1,9 +1,9 @@
 {
   "app": "cc",
   "label": "Infinity Home Improvement Command Center",
-  "builtAt": "2026-10-21T13:29:40-04:00",
+  "builtAt": "2026-10-21T16:53:42-04:00",
   "source": "archive:main",
-  "commit": "8e7df4b",
+  "commit": "dce7b13",
   "storageKeys": [
     "fb-board-v1",
     "ig-command-office",
@@ -17,7 +17,9 @@
     "ihi-phone-rep:",
     "ihi-sample-v1:",
     "ihi-txt-v3:",
-    "ihi-view-as-rep"
+    "ihi-view-as-rep",
+    "jobs-board-v1",
+    "jobs-files-v1"
   ],
   "gateKeys": [
     "ihi-gate-v16"
@@ -29,6 +31,6 @@
   ],
   "manifest": "manifest.webmanifest",
   "warnings": [
-    "storage keys not covered by the cc registry prefixes ('ihi-', 'ig-command-'): ['fb-board-v1'] (add them to REGISTRY.cc in site/shared/sandbox.js)"
+    "storage keys not covered by the cc registry prefixes ('ihi-', 'ig-command-'): ['fb-board-v1', 'jobs-board-v1', 'jobs-files-v1'] (add them to REGISTRY.cc in site/shared/sandbox.js)"
   ]
 }

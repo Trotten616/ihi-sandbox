@@ -174,6 +174,7 @@
       home: { title: "Home", tip: "Your morning checklist — what needs attention today." },
       leads: { title: "Leads", tip: "Everyone who asked for an estimate, plus customers sold in the last 60 days. Click a row to open the customer record." },
       appointments: { title: "Appointments", tip: "Who is going out, when, and who still needs a confirm call." },
+      jobs: { title: "Jobs Board", tip: "Active and historical jobs: schedule, crew, salesman, costs and alerts (sample)." },
       sales: { title: "Sales", tip: "Daily Results — today’s sales appointments, per-rep board, and filters (sample)." },
       activity: { title: "Activity", tip: "Calls, texts, emails and to-dos tied to your leads — what’s due, what’s late, and what you finished (sample)." },
       messages: { title: "Messages", tip: "Simple text inbox (sample). For open/read tracking and who-sent-what, use Speed to Lead." },
@@ -220,7 +221,7 @@
 
   /* v15 — pages each role may open. Missing = everyone. Hidden pages: nav item hidden AND a plain
    * "not available for your role" page if reached by URL (Thomas 2026-10-07: never a blank page). */
-  const VIEWS = ["home", "leads", "appointments", "sales", "activity", "messages", "speed", "reports", "integrations", "settings", "audit", "marketing"];
+  const VIEWS = ["home", "leads", "appointments", "sales", "jobs", "activity", "messages", "speed", "reports", "integrations", "settings", "audit", "marketing"];
   const PAGE_ROLES = {}; /* /marketer/: Thomas wants every page visible to Chris */
   const PAGE_NAMES = { integrations: "Connections", marketing: "Marketing", audit: "Audit log" };
   /* v16 — routes beyond VIEWS come from the page registry (window.IHIPages in js/mobile-utils.js):
@@ -280,6 +281,7 @@
     const view = state.view;
     const R = {
       home: renderHome, leads: renderLeads, appointments: renderAppointments, sales: renderSales,
+      jobs: () => window.JobsBoard && JobsBoard.render($("#jobs-root")),
       activity: renderActivity, messages: renderMessages, speed: renderSpeedToLead, reports: renderReports,
       integrations: renderIntegrations, settings: renderSettings, audit: renderAudit, marketing: renderMarketing
     };

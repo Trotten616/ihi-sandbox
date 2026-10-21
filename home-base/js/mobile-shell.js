@@ -94,6 +94,7 @@
     syncChrome();
     /* Future Board (whole week) is usable on phone for managers/marketers: horizontal scroll */
     if (view === "appointments" && u && !isRepUser(u)) { showPane("view-appointments"); return false; }
+    if (view === "jobs" && u) { showPane("view-jobs"); return false; } /* Jobs Board: every user + manager, phone too */
     if (!isRepUser(u) && !isManager(u)) {
       card('<div class="m-card-icon" aria-hidden="true">📱</div><h2>The phone app is for sales reps.</h2>' +
         '<p>Use the desktop Command Center. You’re signed in as ' + esc(u ? u.name : "") + ' (' + esc(u ? (u.roleLabel || u.role) : "") + ').</p>' +
