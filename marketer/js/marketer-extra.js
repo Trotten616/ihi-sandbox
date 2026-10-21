@@ -116,7 +116,7 @@
       '<label class="mkc-f">Appt set by<select class="select" id="mkc-setby">' + opts(staff().map(function (u) { return u.name; }), me().name) + "</select></label>" +
       '<label class="mkc-f">Date<input class="input" type="date" id="mkc-ap-date" value="' + esc(defDate) + '"></label>' +
       '<label class="mkc-f">Time<select class="select" id="mkc-ap-time">' + opts(TIMES, "14:00") + "</select></label>" +
-      '<label class="mkc-f">Salesperson 1<select class="select" id="mkc-sp1">' + opts(reps(), reps()[0]) + "</select></label>" +
+      '<label class="mkc-f">Salesperson 1<select class="select" id="mkc-sp1">' + opts(["Auto (best rep)"].concat(reps()), "Auto (best rep)") + "</select></label>" +
       '<label class="mkc-f">Salesperson 2<select class="select" id="mkc-sp2">' + opts(reps(), "", "None") + "</select></label>" +
       '<label class="mkc-f">Date issued<input class="input" type="date" id="mkc-issued" value="' + today() + '"><span class="mkc-quick">' + issued.map(function (d, i) { return '<button type="button" class="mkc-chip" data-issued="' + d + '">' + (i === 0 ? "Today" : i === 1 ? "Yesterday" : mdY(d)) + "</button>"; }).join("") + "</span></label>" +
       '<label class="mkc-f">Appt type<select class="select" id="mkc-ap-type">' + opts(APPT_TYPES, "Sales Presentation") + "</select></label>" +
@@ -148,6 +148,18 @@
         issued: $("#mkc-issued", w).value, type: $("#mkc-ap-type", w).value, result: $("#mkc-ap-result", w).value, resultReason: $("#mkc-ap-reason", w).value, notes: $("#mkc-ap-notes", w).value.trim() };
       var db = load(); var inq = (db.inq[cust.id] || []).filter(function (q) { return q.id === inqId; })[0];
       if (!inq) { inq = { id: uid("inq"), date: today(), time: nowT(), srcPrimary: "", srcSecondary: "", status: "Set Appointment", products: [], appointments: [], cust: cust, by: me().name }; (db.inq[cust.id] = db.inq[cust.id] || []).unshift(inq); }
+      /* auto-place on the Future Board: best rep by the board rules unless a rep was picked (manual override) */
+      if (window.FutureBoard) {
+        var PC = { Windows: "WIN", Siding: "SID", Roofing: "RF", Gutters: "GTR", Bath: "TUB", Awnings: "AWNING", Doors: "S DR" };
+        var p0 = (inq.products[0] || {}).product || "", prior = inq.appointments.filter(function (x) { return x.salesperson && x.salesperson !== "Auto (best rep)"; })[0];
+        var isRh = ap.type === "Rehash";
+        var setter = (ap.setBy || "").split(" ").map(function (x) { return x[0]; }).join("");
+        var hsh = 0; String(cust.id).split("").forEach(function (ch) { hsh = (hsh * 31 + ch.charCodeAt(0)) % 90; });
+        var res = FutureBoard.book({ date: date, time: ap.time, city: String(cust.city || "").split(",")[0].trim(), phone: "555-01" + (hsh + 10), product: isRh ? "RHASH" : (PC[p0] || p0.slice(0, 3).toUpperCase() || "WIN"),
+          setter: setter, customer: cust.name, repName: ap.salesperson === "Auto (best rep)" ? "" : ap.salesperson, rehashOf: isRh && prior ? prior.salesperson : "", source: "marketer" });
+        if (!res.ok) { var e2 = $("#mkc-ap-err", w); e2.textContent = "Future Board: " + res.error; e2.hidden = false; return; }
+        ap.salesperson = res.rep.name; ap.boardId = res.appt.id;
+      } else if (ap.salesperson === "Auto (best rep)") ap.salesperson = reps()[0];
       inq.appointments.push(ap); if (inq.status === "Lead") inq.status = "Set Appointment";
       if (!$("#mkc-act", w).hidden) {
         var type = $("#mkc-act-type", w).value, cr = $("#mkc-call-result", w).value;

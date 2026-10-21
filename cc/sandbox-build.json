@@ -1,10 +1,11 @@
 {
   "app": "cc",
   "label": "Infinity Home Improvement Command Center",
-  "builtAt": "2026-10-21T11:47:46-04:00",
+  "builtAt": "2026-10-21T11:53:19-04:00",
   "source": "archive:main",
-  "commit": "224a0e5",
+  "commit": "749a6a2",
   "storageKeys": [
+    "fb-board-v1",
     "ig-command-office",
     "ig-command-theme",
     "ihi-act-v1:",
@@ -27,5 +28,7 @@
     "js/mobile-shell.js"
   ],
   "manifest": "manifest.webmanifest",
-  "warnings": []
+  "warnings": [
+    "storage keys not covered by the cc registry prefixes ('ihi-', 'ig-command-'): ['fb-board-v1'] (add them to REGISTRY.cc in site/shared/sandbox.js)"
+  ]
 }

@@ -623,7 +623,10 @@
       </div>`;
 
     let body = "";
-    if (state.boardTab === "board" && state.boardView === "week") {
+    const useFB = state.boardTab === "board" && window.FutureBoard;
+    if (useFB) {
+      body = `<div id="fb-root"></div>`;
+    } else if (state.boardTab === "board" && state.boardView === "week") {
       const iso = (dt) => dt.toISOString().slice(0, 10);
       const first = days[0] ? new Date(days[0].date + "T12:00:00Z") : new Date();
       const sun = new Date(first.getTime() - first.getUTCDay() * 864e5 + state.boardWeekOffset * 7 * 864e5);
@@ -733,6 +736,7 @@
     }
 
     $("#appointments-root").innerHTML = tabs + body;
+    if (useFB) FutureBoard.render($("#fb-root"), { office: state.office });
     $$("[data-board-tab]").forEach((btn) => {
       btn.addEventListener("click", () => {
         state.boardTab = btn.getAttribute("data-board-tab");

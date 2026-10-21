@@ -2883,3 +2883,44 @@ p.pl-sub { display: block; }
 .board-cell.week-day-head { background: var(--fb-day-next, #1e3a5f); color: #fff; font-size: 0.9rem; padding: 0.45rem 0.6rem; position: sticky; left: 0; }
 .board-cell.week-day-head .week-age { font-size: 0.72rem; opacity: 0.85; margin-left: 0.4rem; }
 .board-cell.week-empty { color: var(--text-muted, #64748b); font-size: 0.82rem; font-style: italic; padding: 0.5rem 0.6rem; }
+
+/* Future Board engine (js/board/future-board.js) */
+.fb-scroll { max-height: 78vh; overflow: auto; position: relative; }
+.fb-week { margin-bottom: 1rem; }
+.fb-week-title { position: sticky; left: 0; margin: 0.6rem 0 0.35rem; font-size: 1rem; }
+.fb-grid .board-cell.head { position: sticky; top: 0; z-index: 3; }
+.fb-day-head { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+.fb-day-head.is-today { outline: 3px solid #00FFFF; outline-offset: -3px; }
+.fb-mini { font: inherit; font-size: 0.75rem; padding: 0.15rem 0.45rem; border-radius: 6px; border: 1px solid rgba(255,255,255,.6); background: rgba(255,255,255,.12); color: inherit; cursor: pointer; }
+.fb-day-head select.fb-mini option { color: #111; }
+.fb-backups, .fb-need { font-size: 0.75rem; opacity: 0.95; }
+.fb-need { color: #ffd166; font-weight: 700; }
+.fb-cell { min-height: 46px; padding: 2px !important; }
+.fb-cell .fb-slot { min-height: 40px; font-size: 0.72rem; line-height: 1.2; font-weight: 700; cursor: pointer; border-radius: 4px; padding: 4px 5px; background: #fff; color: #111; border: 1px solid #d0d5dd; }
+.fb-cell[data-state="off"] { min-height: 46px; }
+.fb-open { width: 100%; min-height: 40px; border: 1px dashed #cbd5e1; background: transparent; color: #94a3b8; font: inherit; font-size: 0.72rem; border-radius: 4px; cursor: pointer; }
+.fb-open:hover, .fb-cell.fb-drop .fb-open { border-color: #1d4ed8; color: #1d4ed8; background: #eef2ff; }
+.fb-flag { display: inline-block; margin-left: 4px; font-size: 0.66rem; color: #b45309; background: #fef3c7; border-radius: 4px; padding: 0 3px; }
+.fb-sentinel { text-align: center; font-size: 0.75rem; color: #94a3b8; padding: 0.5rem; }
+.fb-jump { font-size: 0.85rem; display: inline-flex; gap: 0.35rem; align-items: center; }
+.fb-book-btn { margin-left: auto; }
+.fb-foot, .fb-muted { font-size: 0.82rem; color: var(--text-muted, #64748b); }
+.fb-modal-wrap { position: fixed; inset: 0; background: rgba(15,23,42,.55); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.fb-modal { background: var(--surface, #fff); color: var(--text, #111); border-radius: 12px; width: min(640px, 100%); max-height: 90vh; overflow: auto; box-shadow: 0 20px 50px rgba(0,0,0,.3); }
+.fb-modal-head, .fb-modal-foot { display: flex; justify-content: space-between; align-items: center; gap: .5rem; padding: .75rem 1rem; }
+.fb-modal-foot { justify-content: flex-end; }
+.fb-modal-body { padding: 0 1rem 1rem; }
+.fb-x { font-size: 1.4rem; background: none; border: 0; cursor: pointer; color: inherit; }
+.fb-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: .6rem; }
+.fb-form label { display: flex; flex-direction: column; font-size: .8rem; gap: .2rem; }
+.fb-form input, .fb-form select { font: inherit; padding: .4rem; border-radius: 6px; border: 1px solid #cbd5e1; }
+.fb-suggest { font-size: .8rem; padding-left: 1.2rem; }
+.fb-suggest li.ok { color: #166534; } .fb-suggest li.warn { color: #92400e; } .fb-suggest li.no { color: #94a3b8; }
+.fb-err { color: #b91c1c; font-weight: 600; min-height: 1em; }
+.fb-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.fb-cell-preview { padding: .5rem; border-radius: 6px; font-weight: 700; border: 1px solid #d0d5dd; }
+.fb-route ol { padding-left: 1.2rem; font-size: .82rem; }
+.fb-leg.tight .fb-leg-drive { color: #b45309; font-weight: 700; } .fb-leg.overlong .fb-leg-drive { color: #b91c1c; font-weight: 700; }
+.fb-map { width: 100%; max-width: 360px; height: auto; background: #f1f5f9; border-radius: 8px; display: block; }
+.fb-toast { position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%); background: #111827; color: #fff; padding: .6rem 1rem; border-radius: 8px; opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 10000; }
+.fb-toast.show { opacity: 1; } .fb-toast.bad { background: #b91c1c; }

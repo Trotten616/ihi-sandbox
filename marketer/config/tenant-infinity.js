@@ -25,12 +25,12 @@ IHITenant.apply({
   ],
   /* Future Board columns, in the real board's order: rep name + home office (from the Future Board export, 2026-10-19) */
   futureBoard: [
-    { name: "Mitch Stockel",  city: "Caledonia" },
-    { name: "Dylan D'Agostino",  city: "Grand Rapids" },
-    { name: "James Adams",   city: "Grand Rapids" },
-    { name: "Drew Schau",     city: "Kalamazoo" },
-    { name: "Elliott Miller", city: "Oshtemo" },
-    { name: "Boyd Levitt",    city: "Millington" },
-    { name: "Jonathan Kroll", city: "Middleville" }
+    { name: "Mitch Stockel",  city: "Caledonia", office: "KZO" },
+    { name: "Dylan D'Agostino",  city: "Grand Rapids", office: "KZO" },
+    { name: "James Adams",   city: "Grand Rapids", office: "WM" },
+    { name: "Drew Schau",     city: "Kalamazoo", office: "KZO" },
+    { name: "Elliott Miller", city: "Oshtemo", office: "KZO" },
+    { name: "Boyd Levitt",    city: "Millington", office: "KZO" },
+    { name: "Jonathan Kroll", city: "Middleville", office: "WM" }
   ]
 });
