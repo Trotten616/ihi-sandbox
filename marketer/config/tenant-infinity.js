@@ -15,8 +15,8 @@ IHITenant.apply({
     { id: "u-emily",   name: "Emily Thompson",   role: "dataproc",  division: "Infinity" },
     { id: "u-mitch",   name: "Mitch Stockel",    role: "rep",       division: "Infinity" },
     { id: "u-danny",   name: "Danny Verbrugge",  role: "rep",       division: "Infinity" },
-    { id: "u-dylan",   name: "Dylan Harmsen",    role: "rep",       division: "Gutter Helmet" },
-    { id: "u-james",   name: "James Koster",     role: "rep",       division: "Infinity" },
+    { id: "u-dylan",   name: "Dylan D'Agostino",    role: "rep",       division: "Gutter Helmet" },
+    { id: "u-james",   name: "James Adams",     role: "rep",       division: "Infinity" },
     { id: "u-drew",    name: "Drew Schau",       role: "rep",       division: "Infinity" },
     { id: "u-elliott", name: "Elliott Miller",   role: "rep",       division: "Infinity" },
     { id: "u-boyd",    name: "Boyd Levitt",      role: "rep",       division: "Infinity" },
@@ -26,8 +26,8 @@ IHITenant.apply({
   /* Future Board columns, in the real board's order: rep name + home office (from the Future Board export, 2026-10-19) */
   futureBoard: [
     { name: "Mitch Stockel",  city: "Caledonia" },
-    { name: "Dylan Harmsen",  city: "Grand Rapids" },
-    { name: "James Koster",   city: "Grand Rapids" },
+    { name: "Dylan D'Agostino",  city: "Grand Rapids" },
+    { name: "James Adams",   city: "Grand Rapids" },
     { name: "Drew Schau",     city: "Kalamazoo" },
     { name: "Elliott Miller", city: "Oshtemo" },
     { name: "Boyd Levitt",    city: "Millington" },

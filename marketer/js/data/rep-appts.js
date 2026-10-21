@@ -20,7 +20,7 @@
   /* Sales reps — names reused from the Sales sample salesperson list (SampleData.salesDaily). role "Rep" → IHIPages.roleKey = "rep". */
   const USERS = [
     { id: "u-mitch", name: "Mitch Stockel", email: "mitch.stockel@example.com", role: "Rep", roleLabel: "Sales rep", initials: "MS", officeDefault: "MI", rep: true, salesperson: "Mitch Stockel", salespersonId: "sp-mitch" },
-    { id: "u-dylan", name: "Dylan Harmsen", email: "dylan.harmsen@example.com", role: "Rep", roleLabel: "Sales rep", initials: "DH", officeDefault: "MI", rep: true, salesperson: "Dylan Harmsen", salespersonId: "sp-dylan" }
+    { id: "u-dylan", name: "Dylan D'Agostino", email: "dylan.dagostino@example.com", role: "Rep", roleLabel: "Sales rep", initials: "DD", officeDefault: "MI", rep: true, salesperson: "Dylan D'Agostino", salespersonId: "sp-dylan" }
   ];
 
   /* Result vocabulary on the phone (Access STATUS ↔ MarketSharp result). demo = Sold or Demo/No sale. */

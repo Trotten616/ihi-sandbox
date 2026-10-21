@@ -1,9 +1,9 @@
 {
   "app": "marketer",
   "label": "Marketer (Chris Baareman) - Command Center look",
-  "builtAt": "2026-10-21T11:25:59-04:00",
+  "builtAt": "2026-10-21T11:39:02-04:00",
   "source": "site/cc (archive:main)",
-  "commit": "1927e3c",
+  "commit": "1cfbf8f",
   "storageKeys": [
     "mkc-act-v1:",
     "mkc-command-office",
