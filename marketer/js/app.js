@@ -1690,8 +1690,8 @@
     showScreen(window.IHIShell && !IHIShell.gatePassed() ? "screen-gate" : "screen-login");
     /* /marketer/ (make-marketer-cc.sh): open straight into the app signed in as Chris Baareman */
     if (!(window.IHIShell && !IHIShell.gatePassed())) {
-      const chris = (SampleData.users || []).find((u) => u.id === "u-chris");
-      if (chris) { if (lu) lu.value = chris.id; if (em) em.value = chris.email; const f = $("#login-form"); if (f && f.requestSubmit) f.requestSubmit(); }
+      const chris = (SampleData.users || []).find((u) => u.id === state.userId) || (SampleData.users || []).find((u) => u.id === "u-chris");
+      if (chris) { if (lu) { if (![...lu.options].some((o) => o.value === chris.id)) lu.add(new Option(chris.name, chris.id)); lu.value = chris.id; } if (em) em.value = chris.email; const f = $("#login-form"); if (f && f.requestSubmit) f.requestSubmit(); }
     }
     /* page modules that register late re-render their route */
     document.addEventListener("ihi:pages", () => { if ($("#screen-app").classList.contains("active") && (isPageRoute(state.view) || state.view === "home")) renderCurrentView(); });

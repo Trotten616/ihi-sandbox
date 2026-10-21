@@ -22,7 +22,7 @@
     cal: `<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M2 3h12v11H2zM2 6h12M5 1.5v3M11 1.5v3" stroke="currentColor" fill="none" stroke-width="1.4"/></svg>`
   };
   const TABS = [
-    { id: "info", label: "Lead Info" }, { id: "acts", label: "Activities" }, { id: "att", label: "Attachments" }, { id: "contacts", label: "Add’l Contacts" },
+    { id: "info", label: "Leads/Appts" }, { id: "acts", label: "Activities" }, { id: "att", label: "Attachments" }, { id: "contacts", label: "Mail/Contacts" },
     { id: "notes", label: "Notes" }, { id: "custom", label: "Custom Fields" }, { id: "inq", label: "Inquiries & Appointments" }, { id: "quotes", label: "Quotes" }, { id: "jobs", label: "Jobs" }
   ];
   const ui = { tab: "inq", actStatus: "all" };
