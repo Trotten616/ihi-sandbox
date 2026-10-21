@@ -71,7 +71,7 @@
     var col = C().colors;
     if (!a || a.kind === "note" || a.kind === "cb" || a.kind === "backup") return "";
     if (a.status === "unconfirmed") return "background:" + col.unconfirmedFill + ";color:" + col.unconfirmedText + ";";
-    if (a.status === "confirmed") { var n = Math.max(1, daysBetween(todayISO(), a.date)), f = col.confirmed[n]; if (f) return "background:" + f + ";color:" + (n === 1 ? "#fff" : "#111") + ";"; }
+    if (a.status === "confirmed") { var n = daysBetween(todayISO(), a.date); if (n < 0) return ""; n = Math.max(1, n); var f = col.confirmed[n]; if (f) return "background:" + f + ";color:" + (n === 1 ? "#fff" : "#111") + ";"; }
     return "";
   }
   function leadOffice(a) { var c = city(a.city); return c ? c.office : ""; }
