@@ -156,10 +156,10 @@ window.SampleData = {
       zip: "49503",
       phones: [{"label": "Home", "number": "555-0102"}, {"label": "Mobile", "number": "555-0112"}],
       email: "homeowner.b@example.com",
-      rep: "Mitch Stockel",
+      rep: "Sample Rep A",
       setDate: "2026-10-06",
       inquiryHistory: [{"when": "2026-10-04", "label": "Inquiry created", "detail": "Canvass"}, {"when": "2026-10-04", "label": "Set for Tue 2–4", "detail": "Setter Sample"}],
-      appointmentHistory: [{"when": "2026-10-06 2:00", "label": "Set · GH", "detail": "Mitch Stockel · needs confirm day 2"}],
+      appointmentHistory: [{"when": "2026-10-06 2:00", "label": "Set · GH", "detail": "Sample Rep A · needs confirm day 2"}],
       notes: [
         { when: "2026-10-04 14:20", who: "Setter", text: "Set for Tue 2–4. Both homeowners home." },
         { when: "2026-10-05 09:05", who: "Confirmer", text: "Day-2 confirm call — answered, still on." }
@@ -179,10 +179,10 @@ window.SampleData = {
       zip: "49001",
       phones: [{"label": "Mobile", "number": "555-0103"}],
       email: "homeowner.c@example.com",
-      rep: "Danny Verbrugge",
+      rep: "Sample Rep B",
       setDate: "2026-10-05",
       inquiryHistory: [{"when": "2026-10-05", "label": "Inquiry created", "detail": "IWEB"}, {"when": "2026-10-05", "label": "Issued to rep", "detail": "Appointment Router"}],
-      appointmentHistory: [{"when": "2026-10-05 12:00", "label": "Issued · INF", "detail": "Danny Verbrugge · slot 12–2"}],
+      appointmentHistory: [{"when": "2026-10-05 12:00", "label": "Issued · INF", "detail": "Sample Rep B · slot 12–2"}],
       notes: [
         { when: "2026-10-05 07:55", who: "Appointment Router", text: "Issued to Rep Sample 1. Slot 12–2." }
       ]
@@ -223,10 +223,10 @@ window.SampleData = {
       zip: "49423",
       phones: [{"label": "Mobile", "number": "555-0105"}],
       email: "homeowner.e@example.com",
-      rep: "Dylan Harmsen",
+      rep: "Sample Rep C",
       setDate: "2026-10-07",
       inquiryHistory: [{"when": "2026-10-05", "label": "Inquiry created", "detail": "GH CTS"}, {"when": "2026-10-05", "label": "Set for Wed evening", "detail": "Setter Sample"}],
-      appointmentHistory: [{"when": "2026-10-07 6:00", "label": "Set · GH", "detail": "Dylan Harmsen · confirm day 1"}],
+      appointmentHistory: [{"when": "2026-10-07 6:00", "label": "Set · GH", "detail": "Sample Rep C · confirm day 1"}],
       notes: [
         { when: "2026-10-05 09:30", who: "Setter", text: "Set for Wed evening. Text consent on file." }
       ]
@@ -267,9 +267,9 @@ window.SampleData = {
       zip: "49441",
       phones: [{"label": "Home", "number": "555-0107"}],
       email: "homeowner.g@example.com",
-      rep: "James Koster",
+      rep: "Sample Rep D",
       setDate: "2026-10-05",
-      inquiryHistory: [{"when": "2026-10-03", "label": "Inquiry created", "detail": "Referral"}, {"when": "2026-10-05", "label": "Presentation complete", "detail": "James Koster"}],
+      inquiryHistory: [{"when": "2026-10-03", "label": "Inquiry created", "detail": "Referral"}, {"when": "2026-10-05", "label": "Presentation complete", "detail": "Sample Rep D"}],
       appointmentHistory: [{"when": "2026-10-05 10:00", "label": "Presented · INF", "detail": "Thinking it over (sample)"}],
       notes: [
         { when: "2026-10-05 11:00", who: "Rep Sample 2", text: "Demo complete. Thinking it over — sample note only." }
@@ -289,9 +289,9 @@ window.SampleData = {
       zip: "49428",
       phones: [{"label": "Mobile", "number": "555-0108"}],
       email: "homeowner.h@example.com",
-      rep: "Mitch Stockel",
+      rep: "Sample Rep A",
       setDate: "2026-10-04",
-      inquiryHistory: [{"when": "2026-10-02", "label": "Inquiry created", "detail": "Google"}, {"when": "2026-10-04", "label": "Sold (sample)", "detail": "Mitch Stockel"}],
+      inquiryHistory: [{"when": "2026-10-02", "label": "Inquiry created", "detail": "Google"}, {"when": "2026-10-04", "label": "Sold (sample)", "detail": "Sample Rep A"}],
       appointmentHistory: [{"when": "2026-10-04 6:00", "label": "Sold · GH", "detail": "Gross sold (sample) — net pending rescission"}],
       notes: [
         { when: "2026-10-04 19:45", who: "Rep Sample 1", text: "Gross sold (sample). Net pending rescission window." }
@@ -302,43 +302,43 @@ window.SampleData = {
   boardReps: [
     {
       "id": "r1",
-      "name": "Sample Wrap A",
+      "name": "Mitch Stockel",
       "city": "Caledonia",
       "products": ["Roofing", "Siding", "Windows", "Insulation"]
     },
     {
       "id": "r2",
-      "name": "Sample Wrap B",
+      "name": "Dylan Harmsen",
       "city": "Grand Rapids",
       "products": ["Roofing", "Windows", "Doors", "Decks", "Gutters"]
     },
     {
       "id": "r3",
-      "name": "Sample Wrap C",
+      "name": "James Koster",
       "city": "Grand Rapids",
       "products": ["Siding", "Windows", "Sunrooms", "Insulation"]
     },
     {
       "id": "r4",
-      "name": "Sample Wrap D",
+      "name": "Drew Schau",
       "city": "Kalamazoo",
       "products": ["Roofing", "Siding", "Decks", "Bath"]
     },
     {
       "id": "r5",
-      "name": "Sample Wrap E",
+      "name": "Elliott Miller",
       "city": "Oshtemo",
       "products": ["Gutters", "Roofing", "Windows"]
     },
     {
       "id": "r6",
-      "name": "Sample Wrap F",
+      "name": "Boyd Levitt",
       "city": "Millington",
       "products": ["Roofing", "Siding", "Windows", "Doors", "Decks", "Insulation", "Gutters"]
     },
     {
       "id": "r7",
-      "name": "Sample Wrap G",
+      "name": "Jonathan Kroll",
       "city": "Middleville",
       "products": ["Windows", "Doors", "Decks", "Sunrooms"]
     }

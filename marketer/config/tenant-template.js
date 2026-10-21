@@ -30,8 +30,9 @@
       var rest = (S.users || []).filter(function (u) { return ids.indexOf(u.id) < 0; }).map(function (u) { return Object.assign({}, u, { offTenant: true }); });
       S.users = users.concat(rest);
       var reps = users.filter(function (u) { return u.rep; });
-      (S.boardReps || []).forEach(function (b, i) { if (reps[i]) b.name = reps[i].name; });
-      if (S.boardReps && reps.length) S.boardReps = S.boardReps.slice(0, Math.max(reps.length, 1));
+      var fb = cfg.futureBoard && cfg.futureBoard.length ? cfg.futureBoard : reps.map(function (r) { return { name: r.name }; });
+      (S.boardReps || []).forEach(function (b, i) { if (fb[i]) { b.name = fb[i].name; if (fb[i].city) b.city = fb[i].city; } });
+      if (S.boardReps && fb.length) S.boardReps = S.boardReps.slice(0, Math.max(fb.length, 1));
       if (S.boardDays) S.boardDays.forEach(function (d) { d.slots.forEach(function (s) { s.cells = s.cells.slice(0, S.boardReps.length); }); });
       if (cfg.companyName) document.documentElement.setAttribute("data-tenant", cfg.id || "");
     },

@@ -17,6 +17,20 @@ IHITenant.apply({
     { id: "u-danny",   name: "Danny Verbrugge",  role: "rep",       division: "Infinity" },
     { id: "u-dylan",   name: "Dylan Harmsen",    role: "rep",       division: "Gutter Helmet" },
     { id: "u-james",   name: "James Koster",     role: "rep",       division: "Infinity" },
+    { id: "u-drew",    name: "Drew Schau",       role: "rep",       division: "Infinity" },
+    { id: "u-elliott", name: "Elliott Miller",   role: "rep",       division: "Infinity" },
+    { id: "u-boyd",    name: "Boyd Levitt",      role: "rep",       division: "Infinity" },
+    { id: "u-jonathan",name: "Jonathan Kroll",   role: "rep",       division: "Infinity" },
     { id: "u-tom",     name: "Thomas Otten",     role: "manager",   division: "Infinity", title: "TM manager" }
+  ],
+  /* Future Board columns, in the real board's order: rep name + home office (from the Future Board export, 2026-10-19) */
+  futureBoard: [
+    { name: "Mitch Stockel",  city: "Caledonia" },
+    { name: "Dylan Harmsen",  city: "Grand Rapids" },
+    { name: "James Koster",   city: "Grand Rapids" },
+    { name: "Drew Schau",     city: "Kalamazoo" },
+    { name: "Elliott Miller", city: "Oshtemo" },
+    { name: "Boyd Levitt",    city: "Millington" },
+    { name: "Jonathan Kroll", city: "Middleville" }
   ]
 });
