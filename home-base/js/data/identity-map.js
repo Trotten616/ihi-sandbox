@@ -14,7 +14,7 @@
   "use strict";
   const PEOPLE = [
     /* id,          Access STAFF, INITIALS, MarketSharp names (both company ids), Hatch member id */
-    ["u-casey",   "S-CB",  "CJB", ["Casey Bennett", "Christopher Bennett"], null],
+    ["u-chris",   "S-CB",  "CJB", ["Chris Baareman", "Christopher Baareman"], null],
     ["u-laura",    "S-LK",  "LMK", ["Laura Keller"], null],
     ["u-dana",   "S-DH",  "DLH", ["Dana Howard"], null],
     ["u-carla",   "S-CM",  "CAM", ["Carla Mason"], null],
@@ -33,7 +33,7 @@
   /* v15 — the ONLY display spellings (Thomas 2026-10-07). Every screen takes names from SampleData.users; this list
    * guards against drift (checked in the v15 test run). */
   const CANONICAL = {
-    "u-casey": "Casey Bennett", "u-laura": "Laura Keller", "u-dana": "Dana Howard", "u-carla": "Carla Mason",
+    "u-chris": "Chris Baareman", "u-laura": "Laura Keller", "u-dana": "Dana Howard", "u-carla": "Carla Mason",
     "u-kara": "Kara Tanner", "u-sara": "Sara Vance", "u-sandra": "Sandra Webb", "u-stella": "Stella Shaw",
     "u-erin": "Erin Tate", "u-taylorc": "Taylor Cole", "u-shelby": "Shelby Lane", "u-tobyb": "Toby Baker", "u-tom": "Tom Otten"
   };
@@ -41,7 +41,7 @@
    * MarketSharp Employees (Shelia Tate, David Smiddy, Jeff Shaw, LaJanette Lane); others are misspellings seen
    * in reports. Match on exact name or staff code only, never fuzzy. */
   const LOOKALIKES = ["Shelia Long", "Shelia Lane", "Shelby Long", "Shelia Tate", "Stella Smiddy", "David Smiddy", "Jeff Shaw",
-    "Casey Baerman", "Casey Bareman", "LaJanette Lane", "Lajanette 2 Lane", "Sara Vanhorne", "Dana Honeycutt", "Kara Turashof"];
+    "Chris Baerman", "Chris Bareman", "LaJanette Lane", "Lajanette 2 Lane", "Sara Vanhorne", "Dana Honeycutt", "Kara Turashof"];
   const HATCH_INTEGRATION_USER = "u-tom"; /* the employee id configured in Hatch's MarketSharp integration */
 
   const IdentityMap = {

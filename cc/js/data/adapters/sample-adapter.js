@@ -18,7 +18,7 @@
    * 3–8 sets/day · issued 70–80% of sets · sit 55–70% of issued · close 15–30% of sits · avg sale $9k–$15k */
   const ALL_WEEK = [1, 2, 3, 4, 5, 6]; /* Mon–Sat; nobody phones on Sunday */
   const PROFILES = {
-    "u-casey":   { setsPerDay: 6.3, setRate: 0.33, issue: 0.77, sit: 0.64, close: 0.25, avgSale: 12600, ilShare: 0.18, callsPerDay: 78, workDays: ALL_WEEK },
+    "u-chris":   { setsPerDay: 6.3, setRate: 0.33, issue: 0.77, sit: 0.64, close: 0.25, avgSale: 12600, ilShare: 0.18, callsPerDay: 78, workDays: ALL_WEEK },
     "u-laura":    { setsPerDay: 5.6, setRate: 0.31, issue: 0.79, sit: 0.61, close: 0.27, avgSale: 11800, ilShare: 0.12, callsPerDay: 70, workDays: ALL_WEEK },
     "u-dana":   { setsPerDay: 4.8, setRate: 0.35, issue: 0.74, sit: 0.67, close: 0.21, avgSale: 13900, ilShare: 0.10, callsPerDay: 62, workDays: [2, 3, 4, 5, 6] /* off Mondays */ },
     "u-carla":   { setsPerDay: 7.1, setRate: 0.30, issue: 0.72, sit: 0.57, close: 0.19, avgSale: 10900, ilShare: 0.22, callsPerDay: 88, workDays: ALL_WEEK },

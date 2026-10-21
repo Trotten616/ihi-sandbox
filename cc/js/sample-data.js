@@ -12,7 +12,7 @@ window.SampleData = {
     { id: "u-dataproc", name: "Data Processor Sample", email: "data.sample@example.com", role: "Data processor", initials: "DP", officeDefault: "MI" },
 
     /* Named staff (sample logins — emails are fake @example.com). marketer:true → personal Home dashboard */
-    { id: "u-casey", name: "Casey Bennett", email: "casey.bennett@example.com", role: "Setter", roleLabel: "Marketer", initials: "CB", officeDefault: "MI", marketer: true },
+    { id: "u-chris", name: "Chris Baareman", email: "chris.baareman@example.com", role: "Setter", roleLabel: "Marketer", initials: "CB", officeDefault: "MI", marketer: true },
     { id: "u-laura", name: "Laura Keller", email: "laura.keller@example.com", role: "Setter", roleLabel: "Marketer", initials: "LK", officeDefault: "MI", marketer: true },
     { id: "u-dana", name: "Dana Howard", email: "dana.howard@example.com", role: "Setter", roleLabel: "Marketer", initials: "DH", officeDefault: "MI", marketer: true, scheduleNote: "Doesn’t work Mondays" },
     { id: "u-carla", name: "Carla Mason", email: "carla.mason@example.com", role: "Setter", roleLabel: "Marketer", initials: "CM", officeDefault: "MI", marketer: true },

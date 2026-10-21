@@ -57,6 +57,7 @@
     "agents-desktop": { label: "Agent Platform desktop", path: "/ihi-sandbox/agents-desktop/", prefixes: ["igd_"], caches: ["igd-", "agents-desktop-sandbox-"], hook: "IGD_SIM" },
     /* IntelliGro.AI Home Base Command Center (make-home-base.sh): a copy of the Command Center sandbox with
        its own storage ("ihb-*", renamed from "ihi-*" at build time) and caches, plus the Agent Platform nav item */
+    marketer: { label: "Marketer", path: "/ihi-sandbox/marketer/", prefixes: ["mkt:"], caches: [] },
     "home-base": { label: "IntelliGro.AI Home Base Command Center", path: "/ihi-sandbox/home-base/", prefixes: ["ihb-"], caches: ["ihb-"] },
     /* the Agent Platform page framed inside Home Base: keys "ihb-agents-*" are under the home-base prefix,
        so Home Base's "Reset this app" clears them too */
