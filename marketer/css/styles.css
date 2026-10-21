@@ -2872,3 +2872,14 @@ p.pl-sub { display: block; }
 @media (min-width: 761px) and (max-width: 1200px) {
   .page-tip { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 }
+
+/* Future Board: whole-week view */
+.board-view-toggle, .board-week-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 0 0 0.75rem; }
+.board-view-toggle button, .board-week-nav button { padding: 0.4rem 0.8rem; border-radius: 999px; border: 1px solid var(--border, #cbd5e1); background: var(--surface, #fff); color: inherit; cursor: pointer; font: inherit; font-size: 0.85rem; min-height: 36px; }
+.board-view-toggle button[aria-pressed="true"] { background: var(--accent, #1d4ed8); color: #fff; border-color: transparent; }
+.board-week-label { font-size: 0.95rem; }
+.board-week-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; max-height: 75vh; overflow-y: auto; }
+.board-week-grid .board-cell.head { position: sticky; top: 0; z-index: 2; }
+.board-cell.week-day-head { background: var(--fb-day-next, #1e3a5f); color: #fff; font-size: 0.9rem; padding: 0.45rem 0.6rem; position: sticky; left: 0; }
+.board-cell.week-day-head .week-age { font-size: 0.72rem; opacity: 0.85; margin-left: 0.4rem; }
+.board-cell.week-empty { color: var(--text-muted, #64748b); font-size: 0.82rem; font-style: italic; padding: 0.5rem 0.6rem; }

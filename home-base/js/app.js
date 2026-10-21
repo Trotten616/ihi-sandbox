@@ -35,6 +35,8 @@
     view: "home",
     boardTab: "board",
     boardDayId: "mon",
+    boardView: "week",
+    boardWeekOffset: 0,
     selectedLeadId: null,
     selectedThreadId: null,
     selectedStlId: null,
@@ -603,10 +605,63 @@
       </div>
     `;
 
+    const fbCell = (a) => {
+      if (!a) return `<div class="board-cell"><div class="slot slot-fb-open">Open</div></div>`;
+      const dim = a.state && a.state !== state.office;
+      const typ = a.type || "set";
+      const main = a.label || a.lead || "";
+      const sub = a.lead && a.type !== "unavailable" && a.type !== "product" && a.type !== "radius"
+        ? `${a.lead}${a.state ? " · " + a.state : ""}`
+        : (a.state ? a.state : "");
+      return `<div class="board-cell ${dim ? "dimmed" : ""}"><div class="slot slot-fb-${typ}">${main}${sub ? `<span class="sub">${sub}</span>` : ""}</div></div>`;
+    };
+    const fbRepHeads = () => reps.map((r) => `<div class="board-cell head board-rep-head"><div class="rep-name">${r.name}</div><span class="rep-city">🏠 ${r.city}</span></div>`).join("");
+    const viewToggle = `
+      <div class="board-view-toggle" role="group" aria-label="Board view">
+        <button type="button" data-board-view="week" aria-pressed="${state.boardView === "week"}">Whole week</button>
+        <button type="button" data-board-view="day" aria-pressed="${state.boardView === "day"}">Single day</button>
+      </div>`;
+
     let body = "";
-    if (state.boardTab === "board" && day) {
+    if (state.boardTab === "board" && state.boardView === "week") {
+      const iso = (dt) => dt.toISOString().slice(0, 10);
+      const first = days[0] ? new Date(days[0].date + "T12:00:00Z") : new Date();
+      const sun = new Date(first.getTime() - first.getUTCDay() * 864e5 + state.boardWeekOffset * 7 * 864e5);
+      const week = Array.from({ length: 7 }, (_, i) => new Date(sun.getTime() + i * 864e5));
+      const names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const fmt = (dt) => `${dt.getUTCMonth() + 1}/${dt.getUTCDate()}`;
+      const rangeLabel = `${fmt(week[0])} – ${fmt(week[6])}/${week[6].getUTCFullYear()}`;
+      const sections = week.map((dt, i) => {
+        const d = days.find((x) => x.date === iso(dt));
+        const age = d ? (d.confirmAge === "next" ? "NEXT DAY" : d.confirmAge === "day2" ? "DAY 2" : d.confirmAge === "day3" ? "DAY 3" : "") : "";
+        const head = `<div class="board-cell week-day-head" data-week-date="${iso(dt)}" style="grid-column:1 / -1;"><strong>${names[i]} ${fmt(dt)}</strong>${age ? ` <span class="week-age">${age}</span>` : ""}</div>`;
+        if (!d || !d.slots || !d.slots.length) return head + `<div class="board-cell week-empty" style="grid-column:1 / -1;">No appointments on the board</div>`;
+        return head + d.slots.map((row) => `<div class="board-cell time">${row.time}</div>${reps.map((_, ri) => fbCell(row.cells[ri])).join("")}`).join("");
+      }).join("");
+      body = `
+        ${viewToggle}
+        <div class="board-week-nav" role="group" aria-label="Week">
+          <button type="button" data-board-week="-1" aria-label="Previous week">‹ Prev week</button>
+          <strong class="board-week-label">Week of ${rangeLabel}</strong>
+          <button type="button" data-board-week="1" aria-label="Next week">Next week ›</button>
+          ${state.boardWeekOffset ? `<button type="button" data-board-week="0">This board week</button>` : ""}
+        </div>
+        <div class="board-legend" aria-label="Color legend">
+          ${legend.map((L) => `<span><i class="legend-dot dot-fb-${L.type}" style="background:${L.color}"></i>${L.label}</span>`).join("")}
+        </div>
+        <div class="board-scroll board-week-scroll">
+          <div class="board-grid board-week-grid" role="grid" aria-label="Future Board week of ${rangeLabel}" style="grid-template-columns: 64px repeat(${reps.length}, minmax(124px, 1fr));">
+            <div class="board-cell head">Time</div>
+            ${fbRepHeads()}
+            ${sections}
+          </div>
+        </div>
+        <p style="margin:0.85rem 0 0;font-size:0.85rem;color:var(--text-muted);">Sunday–Saturday period week. Sample Homeowner names and 555 numbers only. Faded slots belong to the other office.</p>
+      `;
+    } else if (state.boardTab === "board" && day) {
       const ageClass = day.confirmAge === "next" ? "age-next" : day.confirmAge === "day2" ? "age-day2" : day.confirmAge === "day3" ? "age-day3" : "age-same";
       body = `
+        ${viewToggle}
         <div class="board-day-pills" role="group" aria-label="Board day">
           ${days.map((d) => {
             const ac = d.confirmAge === "next" ? "age-next" : d.confirmAge === "day2" ? "age-day2" : d.confirmAge === "day3" ? "age-day3" : "age-same";
@@ -681,6 +736,16 @@
     $$("[data-board-tab]").forEach((btn) => {
       btn.addEventListener("click", () => {
         state.boardTab = btn.getAttribute("data-board-tab");
+        renderAppointments();
+      });
+    });
+    $$("[data-board-view]").forEach((btn) => {
+      btn.addEventListener("click", () => { state.boardView = btn.getAttribute("data-board-view"); renderAppointments(); });
+    });
+    $$("[data-board-week]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const v = Number(btn.getAttribute("data-board-week"));
+        state.boardWeekOffset = v === 0 ? 0 : state.boardWeekOffset + v;
         renderAppointments();
       });
     });

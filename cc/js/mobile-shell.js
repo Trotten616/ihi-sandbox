@@ -92,12 +92,15 @@
     if (!isPhone() || !app()) return false;
     var u = app().currentUser();
     syncChrome();
+    /* Future Board (whole week) is usable on phone for managers/marketers: horizontal scroll */
+    if (view === "appointments" && u && !isRepUser(u)) { showPane("view-appointments"); return false; }
     if (!isRepUser(u) && !isManager(u)) {
       card('<div class="m-card-icon" aria-hidden="true">📱</div><h2>The phone app is for sales reps.</h2>' +
         '<p>Use the desktop Command Center. You’re signed in as ' + esc(u ? u.name : "") + ' (' + esc(u ? (u.roleLabel || u.role) : "") + ').</p>' +
         '<button type="button" class="btn btn-primary" data-m-signout>Sign out</button>');
       return true;
     }
+    /* Future Board (whole week) is usable on phone for managers/marketers: horizontal scroll */
     if (isManager(u) && !chosenRep()) { renderRepPicker(); return true; }
     if (view === "home") { app().navigate("today"); return true; } /* phone Today = registry route "today" */
     if (PHONE_ROUTES.indexOf(view) < 0) {
