@@ -17,15 +17,15 @@
     ["u-chris",   "S-CB",  "CJB", ["Chris Baareman", "Christopher Baareman"], null],
     ["u-laura",    "S-LK",  "LMK", ["Laura Keller"], null],
     ["u-dana",   "S-DH",  "DLH", ["Dana Howard"], null],
-    ["u-carla",   "S-CM",  "CAM", ["Carla Mason"], null],
-    ["u-kara",  "S-KT",  "KAT", ["Kara Tanner"], null],
+    ["u-cindy",   "S-CM",  "CAM", ["Cindy Moreno"], null],
+    ["u-karrie",  "S-KT",  "KAT", ["Karrie Turashoff"], null],
     ["u-sara",   "S-SV",  "SAV", ["Sara Vance", "Sara Van Horn"], null],
     ["u-sandra", "S-SW",  "SRW", ["Sandra Webb"], null],
     ["u-stella",   "S-SS",  "SKS", ["Stella Shaw"], null],
-    ["u-shelby",  "S-SL",  "SML", ["Shelby Lane"], null], /* real MS lists "SHELBY LANE" + "Shelby Lane" (matched case-insensitively) */
-    ["u-tobyb",  "S-TB",  "TJB", ["Toby Baker"], null],
-    ["u-erin",   "S-ET",  "EKT", ["Erin Tate"], null],
-    ["u-taylorc",  "S-TC",  "TRC", ["Taylor Cole"], null],
+    ["u-sheila",  "S-SL",  "SML", ["Sheila Lung"], null], /* real MS lists "SHEILA LUNG" + "Sheila Lung" (matched case-insensitively) */
+    ["u-tylerb",  "S-TB",  "TJB", ["Tyler Budd"], null],
+    ["u-emily",   "S-ET",  "EKT", ["Emily Thompson"], null],
+    ["u-tylerc",  "S-TC",  "TRC", ["Tyler Carpenter"], null],
     ["u-tom",     "S-TO",  "TPO", ["Tom Otten"], null]
   ].map((r) => ({ userId: r[0], accessStaff: r[1], accessInitials: r[2], msNames: r[3], hatchMemberId: r[4] }));
   const norm = (s) => String(s || "").trim().toLowerCase().replace(/\s+/g, " ");
@@ -33,15 +33,15 @@
   /* v15 — the ONLY display spellings (Thomas 2026-10-07). Every screen takes names from SampleData.users; this list
    * guards against drift (checked in the v15 test run). */
   const CANONICAL = {
-    "u-chris": "Chris Baareman", "u-laura": "Laura Keller", "u-dana": "Dana Howard", "u-carla": "Carla Mason",
-    "u-kara": "Kara Tanner", "u-sara": "Sara Vance", "u-sandra": "Sandra Webb", "u-stella": "Stella Shaw",
-    "u-erin": "Erin Tate", "u-taylorc": "Taylor Cole", "u-shelby": "Shelby Lane", "u-tobyb": "Toby Baker", "u-tom": "Tom Otten"
+    "u-chris": "Chris Baareman", "u-laura": "Laura Keller", "u-dana": "Dana Howard", "u-cindy": "Cindy Moreno",
+    "u-karrie": "Karrie Turashoff", "u-sara": "Sara Vance", "u-sandra": "Sandra Webb", "u-stella": "Stella Shaw",
+    "u-emily": "Emily Thompson", "u-tylerc": "Tyler Carpenter", "u-sheila": "Sheila Lung", "u-tylerb": "Tyler Budd", "u-tom": "Tom Otten"
   };
   /* Lookalikes that must NEVER map to our staff. Some are real, different, inactive people in Access STAFF /
-   * MarketSharp Employees (Shelia Tate, David Smiddy, Jeff Shaw, LaJanette Lane); others are misspellings seen
+   * MarketSharp Employees (Shelia Thompson, David Smiddy, Jeff Shaw, LaJanette Lung); others are misspellings seen
    * in reports. Match on exact name or staff code only, never fuzzy. */
-  const LOOKALIKES = ["Shelia Long", "Shelia Lane", "Shelby Long", "Shelia Tate", "Stella Smiddy", "David Smiddy", "Jeff Shaw",
-    "Chris Baerman", "Chris Bareman", "LaJanette Lane", "Lajanette 2 Lane", "Sara Vanhorne", "Dana Honeycutt", "Kara Turashof"];
+  const LOOKALIKES = ["Shelia Long", "Shelia Lung", "Sheila Long", "Shelia Thompson", "Stella Smiddy", "David Smiddy", "Jeff Shaw",
+    "Chris Baerman", "Chris Bareman", "LaJanette Lung", "Lajanette 2 Lung", "Sara Vanhorne", "Dana Honeycutt", "Karrie Turashof"];
   const HATCH_INTEGRATION_USER = "u-tom"; /* the employee id configured in Hatch's MarketSharp integration */
 
   const IdentityMap = {

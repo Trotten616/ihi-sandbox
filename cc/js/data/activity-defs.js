@@ -30,7 +30,7 @@
   /* Activity Reference = "what is this about" (MarketSharp editable list).
    * audience — whose queue the reference belongs to:
    *   'marketer'  = setter / callback work (shows in marketers' Activity and the manager's team view)
-   *   'confirmer' = confirmation workflow (Shelby / confirm team) — NEVER shown in a marketer's Activity
+   *   'confirmer' = confirmation workflow (Sheila / confirm team) — NEVER shown in a marketer's Activity
    *   'office'    = post-sale / office follow-up (not a marketer's queue either; live refs only)
    * Unknown live references (not listed here) are shown to everyone until they're tagged. */
   const CONFIRMER_REFERENCES = [

@@ -42,8 +42,8 @@
   const CITIES = [["Grand Rapids", "49506"], ["Wyoming", "49509"], ["Kentwood", "49508"], ["Holland", "49423"], ["Grandville", "49418"], ["Hudsonville", "49426"], ["Rockford", "49341"], ["Walker", "49534"], ["Kalamazoo", "49008"], ["Portage", "49024"], ["Muskegon", "49441"], ["Jenison", "49428"]];
   const PRODUCTS = [["Windows"], ["Gutter Helmet"], ["Siding"], ["Roofing"], ["Windows", "Entry Door"], ["Siding", "Windows"], ["Bath"], ["Windows"], ["Gutter Helmet"], ["Patio Door"]];
   const SOURCES = ["Google Ad", "Home Show", "Referral", "Angi", "Facebook", "Canvass", "Modernize", "TV", "Website", "Repeat Customer"];
-  const SETTERS = ["Chris Baareman", "Laura Keller", "Dana Howard", "Carla Mason", "Kara Tanner", "Sara Vance", "Sandra Webb", "Stella Shaw"];
-  const CONFIRMERS = ["Shelby Lane", "Toby Baker"];
+  const SETTERS = ["Chris Baareman", "Laura Keller", "Dana Howard", "Cindy Moreno", "Karrie Turashoff", "Sara Vance", "Sandra Webb", "Stella Shaw"];
+  const CONFIRMERS = ["Sheila Lung", "Tyler Budd"];
   const SLOTS = ["10:00", "12:00", "14:00", "16:00", "18:00"];
   const NOTES = ["Wants to see color samples", "Old aluminum windows, drafty upstairs", "Gutters overflow on the north side", "Dog in the back yard, use the front door", "Got two other quotes", "Asked about financing", "Ranch house, about 1,400 sq ft", "Call when on the way", "Storm damage last spring", "Interested in a full tear-off", "Retired, home all day", "Park in the driveway, not on the street"];
   const short = (full) => { const p = String(full).split(" "); return p[0] + " " + (p[1] ? p[1][0] + "." : ""); };

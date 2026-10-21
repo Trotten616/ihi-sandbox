@@ -17,8 +17,8 @@
   const TODAY = "2026-10-05";
   const NOW_M = 11 * 60 + 50;
   const TXT_FROM = "2026-10-02";
-  const CONFIRMERS = ["u-shelby", "u-tobyb"];
-  const DATAPROC = ["u-erin", "u-taylorc"];
+  const CONFIRMERS = ["u-sheila", "u-tylerb"];
+  const DATAPROC = ["u-emily", "u-tylerc"];
   const DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const NOTES = ["Prefers evenings after 6", "Both owners will be home", "Call before arriving — dog in yard", "Wants a price on the back door too",
     "Has a quote from another company", "Text instead of call", "Saturday only", "Rental property — owner meeting rep"];
@@ -142,7 +142,7 @@
         });
       });
 
-      /* confirm team (Shelby / Taylor B): Access WHOCONFIRM + MarketSharp Confirm Appointment call */
+      /* confirm team (Sheila / Tyler B): Access WHOCONFIRM + MarketSharp Confirm Appointment call */
       const msConfirmed = {};
       raw.appointments.forEach((a) => {
         if (!inR(a.confirmedDate)) return;
@@ -164,7 +164,7 @@
           customer: S.leadName(a.inquiryId), leadId: a.inquiryId, ownerId: m, office: a.office, employeeKey: code(who).initials });
       });
 
-      /* data processors (Erin / Taylor C): results keyed the next morning, in both systems */
+      /* data processors (Emily / Tyler C): results keyed the next morning, in both systems */
       raw.appointments.forEach((a) => {
         if (!a.resulted) return;
         let kd = addDays(a.apptDate, 1); if (dow(kd) === 0) kd = addDays(kd, 1);

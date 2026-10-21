@@ -262,7 +262,7 @@
    *     confirmer references (ActivityDefs.CONFIRMER_REFERENCES: Confirm Appointment, Appointment Reminder…)
    *     and office references are removed before anything is counted or listed.
    *   anyone else → "all" (nothing removed).
-   *   filters.audience overrides it — e.g. getActivities("u-shelby", { audience: "confirmer" }) for a future
+   *   filters.audience overrides it — e.g. getActivities("u-sheila", { audience: "confirmer" }) for a future
    *   confirm queue (no UI yet).
    */
   const activityOverrides = {}; /* id → { completedDate, completedTime, result } — sample only, lost on reload */
